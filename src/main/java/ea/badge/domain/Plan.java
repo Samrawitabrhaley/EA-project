@@ -7,11 +7,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @Entity
 public class Plan {
-    @Id
-    @GeneratedValue
-    private int id;
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(name = "PlanName", nullable = false)
+    private String planName;
+
+    @Column(name = "Description", nullable = true)
+    private String planDescription;
+
+    @OneToMany
+    @JoinColumn(name = "plan_id")
+    private List<Role> role;
 }
