@@ -12,8 +12,8 @@ import java.util.Collection;
 @Data
 public class Member {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long memberId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String firstName;
     private String lastName;
     private String emailAddress;
