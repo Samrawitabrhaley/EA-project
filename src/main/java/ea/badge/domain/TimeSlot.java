@@ -17,6 +17,6 @@ public class TimeSlot {
     @ManyToOne
     private Location location;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Days days;
 }
