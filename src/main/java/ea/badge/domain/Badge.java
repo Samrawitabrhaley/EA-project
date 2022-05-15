@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Entity
 public class Badge {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "activation_date")
     private LocalDate activationDate;
