@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -15,12 +17,13 @@ public class Member {
     private String firstName;
     private String lastName;
     private String emailAddress;
-    @OneToOne(name= "role_Id")
+    @OneToOne
+    @Column(name = "Role")
     private Role role;
 
     @OneToMany(mappedBy = "member")
-    private Membership membership;
+    private List<Membership> membership = new ArrayList<>();
 
     @OneToMany(mappedBy = "member")
-    private Badge badge;
+    private List<Badge> badge = new ArrayList<>();
 }

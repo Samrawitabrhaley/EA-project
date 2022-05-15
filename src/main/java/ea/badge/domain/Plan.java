@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -24,5 +25,5 @@ public class Plan {
 
     @OneToMany
     @JoinColumn(name = "plan_id")
-    private List<Role> role;
+    private List<Role> role = new ArrayList<>();
 }
