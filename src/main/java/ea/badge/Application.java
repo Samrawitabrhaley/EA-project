@@ -1,6 +1,5 @@
 package ea.badge;
 
-import ea.lab.exercise_15.service.CountryService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
