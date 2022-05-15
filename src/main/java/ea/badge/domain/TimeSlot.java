@@ -1,8 +1,15 @@
 package ea.badge.domain;
 
-import javax.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import java.time.LocalTime;
 
+@Data
 @Entity
 @Table(name = "Time_Slots")
 public class TimeSlot {

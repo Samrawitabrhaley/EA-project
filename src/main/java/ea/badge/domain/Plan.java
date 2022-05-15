@@ -3,14 +3,15 @@ package ea.badge.domain;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name="Plan")
 public class Plan {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
