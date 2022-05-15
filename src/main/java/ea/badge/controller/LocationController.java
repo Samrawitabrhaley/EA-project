@@ -1,2 +1,4 @@
-package ea.badge.controller;public class LocationController {
+package ea.badge.controller;
+
+public class LocationController {
 }
