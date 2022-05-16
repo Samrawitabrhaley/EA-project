@@ -18,7 +18,7 @@ public class RoleController {
     @GetMapping("/{id}")
     public Role getById(@PathVariable("id") Integer id) { return roleService.findById(id); }
     @PostMapping
-    public void addRole(Role role){
+    public void addRole(@RequestBody Role role){
         roleService.addRole(role);
     }
     @DeleteMapping("/{id}")
