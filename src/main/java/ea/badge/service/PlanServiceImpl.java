@@ -23,8 +23,8 @@ public class PlanServiceImpl implements PlanService {
     }
 
     @Override
-    public void addPlan(Plan plan) {
-        planRepository.save(plan);
+    public Plan addPlan(Plan plan) {
+        return planRepository.save(plan);
     }
 
     @Override

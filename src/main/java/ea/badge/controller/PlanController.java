@@ -11,14 +11,14 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
-@RequestMapping("/plan")
+@RequestMapping("/plans")
 public class PlanController {
     @Autowired
     private PlanService planService;
 
     @PostMapping
-    public void addPlan(Plan plan){
-        planService.addPlan(plan);
+    public Plan addPlan(@RequestBody Plan plan){
+        return planService.addPlan(plan);
     }
 
     @GetMapping
