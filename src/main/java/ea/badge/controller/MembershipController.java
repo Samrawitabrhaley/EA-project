@@ -1,6 +1,7 @@
 package ea.badge.controller;
 
 
+import ea.badge.domain.Badge;
 import ea.badge.domain.Member;
 import ea.badge.domain.Membership;
 import ea.badge.service.MemberService;
@@ -28,4 +29,8 @@ public class MembershipController {
 
 
 
-}
+
+
+    }
+
+

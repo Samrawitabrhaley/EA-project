@@ -1,12 +1,13 @@
 package ea.badge.service;
 
+import ea.badge.domain.Badge;
 import ea.badge.domain.Role;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface RoleService {
-    public Role addRole(Role role);
+    Collection<Role> findAll();
+    Role findById(Integer id);
+    public void addRole(Role role);
     public void removeRole(Integer id);
-
-    public List<Role> findAll();
 }
