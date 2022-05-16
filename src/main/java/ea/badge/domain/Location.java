@@ -4,8 +4,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
-import ea.badge.domain.Plan;
 
 @Entity
 @NoArgsConstructor
@@ -13,7 +13,7 @@ import ea.badge.domain.Plan;
 public class Location {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String name;
@@ -29,22 +29,22 @@ public class Location {
 
     @OneToMany(cascade = CascadeType.ALL)
 //    @JoinColumn(name="location_id")
-    private List<Plan> planList;
+    private List<Plan> plans = new ArrayList<>();
 
     @OneToMany(mappedBy = "location",cascade = CascadeType.ALL)
-    private List<Membership>membershipList;
+    private List<Membership> memberships = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="location_Id")
-    private List<TimeSlot> timeSlotList;
+    private List<Timeslot> timeslots = new ArrayList<>();
 
     public void addMember(Membership membership){
-        this.membershipList.add(membership);
+        this.memberships.add(membership);
     }
-    public void addTimeSlot(TimeSlot timeSlot){
-        this.timeSlotList.add(timeSlot);
+    public void addTimeSlot(Timeslot timeSlot){
+        this.timeslots.add(timeSlot);
     }
     public void addPlan(Plan plan){
-        this.planList.add(plan);
+        this.plans.add(plan);
     }
 }

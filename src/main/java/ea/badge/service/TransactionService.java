@@ -5,9 +5,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface TransactionService {
-    public void addTransaction(Transaction transaction);
+    void addTransaction(Transaction transaction);
 
-    public List<Transaction> findAll();
+    List<Transaction> findAll();
 }

@@ -48,9 +48,9 @@ public class LocationController {
                     location.setLocationType(newLocation.getLocationType());
                     location.setCapacity(newLocation.getCapacity());
                     location.setDescription(newLocation.getDescription());
-                    location.setMembershipList(newLocation.getMembershipList());
-                    location.setPlanList(newLocation.getPlanList());
-                    location.setTimeSlotList(newLocation.getTimeSlotList());
+                    location.setMemberships(newLocation.getMemberships());
+                    location.setPlans(newLocation.getPlans());
+                    location.setTimeslots(newLocation.getTimeslots());
                     return locationService.save(location);
                 }).orElseGet(() -> {
                     newLocation.setId(id);

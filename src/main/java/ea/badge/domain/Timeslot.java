@@ -8,8 +8,7 @@ import java.time.LocalTime;
 
 @Data
 @Entity
-@Table(name = "Time_Slot")
-public class TimeSlot {
+public class Timeslot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

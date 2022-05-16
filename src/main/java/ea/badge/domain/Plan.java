@@ -21,7 +21,14 @@ public class Plan {
     @Column(name = "Description", nullable = true)
     private String planDescription;
 
-    @OneToMany
-    @JoinColumn(name = "plan_id")
+    @OneToMany(cascade = CascadeType.REMOVE)
+    @JoinTable(name = "Plan_Role",
+            joinColumns = { @JoinColumn(name = "Plan_id") },
+            inverseJoinColumns = { @JoinColumn(name = "Role_id") }
+    )
     private List<Role> role;
+
+    @OneToOne()
+    @JoinColumn(name = "Rule_id")
+    private Rule rule;
 }
