@@ -18,8 +18,8 @@ public class MembershipServiceImpl implements MembershipService{
     }
 
     @Override
-    public List<Membership> getMemberships() {
-        return membershipRepository.findAll();
+    public void removeMembership(Long id) {
+        membershipRepository.deleteById(id);
     }
 
 
