@@ -1,5 +1,6 @@
 package ea.badge.service;
 
+import ea.badge.domain.Badge;
 import ea.badge.domain.Member;
 import ea.badge.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import java.util.List;
 public class MemberServiceImpl implements MemberService{
     @Autowired
     private MemberRepository memberRepository;
+    @Autowired
+    private BadgeService badgeService;
 
     @Override
     public Member createMember(Member member) {
@@ -38,5 +41,20 @@ public class MemberServiceImpl implements MemberService{
     public Member updateById(Member member,Long id) {
        return memberRepository.save(member);
 
+    }
+
+    @Override
+    public Badge createBadge(Badge badge) {
+        return badgeService.create(badge);
+    }
+
+    @Override
+    public Badge replaceBadge(Badge bagde) {
+        return badgeService.replaceWithNew(bagde);
+    }
+
+    @Override
+    public Badge deactivateBadge(Integer id) {
+        return badgeService.deactivateById(id);
     }
 }
