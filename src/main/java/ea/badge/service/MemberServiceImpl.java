@@ -44,13 +44,13 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public Badge createBadge(Badge badge) {
-        return badgeService.create(badge);
+    public Badge createOrUpdate(Badge badge) {
+        return badgeService.createOrUpdate(badge);
     }
 
     @Override
-    public Badge replaceBadge(Badge bagde) {
-        return badgeService.replaceWithNew(bagde);
+    public Badge replaceBadge(Badge badge) {
+        return badgeService.replaceWithNew(badge);
     }
 
     @Override

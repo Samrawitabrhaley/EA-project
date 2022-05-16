@@ -40,15 +40,16 @@ public class MemberController {
     public Member updateMember(@Valid @RequestBody Member member, @PathVariable Long id){
        return memberService.updateById(member,id);
     }
-    @PostMapping("/createBadge")
-    public Badge createBadge(@RequestBody Badge badge) {
-        return memberService.createBadge(badge);
+    @PostMapping("/{id}/badges")
+    @PutMapping("/{id}/badges")
+    public Badge createOrUpdate(@RequestBody Badge badge) {
+        return memberService.createOrUpdate(badge);
     }
-    @PostMapping("/{id}/replace")
+    @PostMapping("/{id}/badges/replace")
     public Badge replaceBadge(@RequestBody Badge bagde){
         return memberService.replaceBadge(bagde);
     }
-    @PutMapping("/{id}/deactivate")
+    @PutMapping("/{id}/badges/deactivate")
     public Badge deactivateBadge(@RequestBody Badge badge){
         return memberService.deactivateBadge(badge.getId());
     }
