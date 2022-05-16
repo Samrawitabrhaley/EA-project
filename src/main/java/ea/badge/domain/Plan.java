@@ -4,13 +4,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name="Plan")
 public class Plan {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
