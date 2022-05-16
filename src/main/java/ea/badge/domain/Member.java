@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -17,16 +17,12 @@ public class Member {
     private String firstName;
     private String lastName;
     private String emailAddress;
-    @OneToMany()
-    @JoinTable(name = "Member_Role",
-        joinColumns = { @JoinColumn(name = "Member_id") },
-        inverseJoinColumns = { @JoinColumn(name = "Role_id") }
-    )
-    private Collection<Role> role = new ArrayList<>();
+    @OneToOne
+    @Column(name = "Role")
+    private Role role;
+    @OneToMany(mappedBy = "member")
+    private List<Membership> membership = new ArrayList<>();
 
     @OneToMany(mappedBy = "member")
-    private Collection<Membership> membership = new ArrayList<>();
-
-    @OneToMany(mappedBy = "member")
-    private Collection<Badge> badge = new ArrayList<>();
+    private List<Badge> badge = new ArrayList<>();
 }
