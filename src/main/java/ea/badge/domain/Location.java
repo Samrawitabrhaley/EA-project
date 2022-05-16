@@ -27,15 +27,24 @@ public class Location {
     @Enumerated(EnumType.STRING)
     private LocationType locationType;
 
-    @OneToMany
-    @JoinColumn(name="location_id")
+    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name="location_id")
     private List<Plan> planList;
 
-    @OneToMany(mappedBy = "location")
+    @OneToMany(mappedBy = "location",cascade = CascadeType.ALL)
     private List<Membership>membershipList;
 
-    @OneToMany
-    @JoinColumn(name="location_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="location_Id")
     private List<TimeSlot> timeSlotList;
 
+    public void addMember(Membership membership){
+        this.membershipList.add(membership);
+    }
+    public void addTimeSlot(TimeSlot timeSlot){
+        this.timeSlotList.add(timeSlot);
+    }
+    public void addPlan(Plan plan){
+        this.planList.add(plan);
+    }
 }
