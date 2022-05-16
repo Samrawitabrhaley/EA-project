@@ -1,7 +1,6 @@
 package ea.badge.domain;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -19,8 +18,8 @@ public class TimeSlot {
     @Column(name = "end_time")
     private LocalTime endTime;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    private Location location;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Location location;
 
     @Enumerated(EnumType.STRING)
     private Days days;

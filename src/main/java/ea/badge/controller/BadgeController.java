@@ -23,5 +23,5 @@ public class BadgeController {
     @PostMapping("/{id}/replace")
     public Badge replaceWithNew(@RequestBody Badge badge) { return service.replaceWithNew(badge); }
     @PutMapping("/{id}/deactivate")
-    public Badge replaceWithNew(@PathVariable("id") Integer id) { return service.deactivateById(id); }
+    public Badge deactivate(@PathVariable("id") Integer id) { return service.deactivateById(id); }
 }
