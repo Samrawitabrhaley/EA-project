@@ -4,10 +4,7 @@ package ea.badge.controller;
 import ea.badge.domain.Transaction;
 import ea.badge.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,8 +15,8 @@ public class TransactionController {
     private TransactionService transactionService;
 
     @PostMapping
-    public void addTransaction(Transaction transaction){
-        transactionService.addTransaction(transaction);
+    public Transaction addTransaction(@RequestBody Transaction transaction){
+        return transactionService.addTransaction(transaction);
     }
 
     @GetMapping

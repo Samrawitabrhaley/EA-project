@@ -7,7 +7,7 @@ import java.util.List;
 @Service
 public interface PlanService {
 
-    public void addPlan(Plan plan);
+    public Plan addPlan(Plan plan);
 
     public void removePlan(Integer id);
 

@@ -5,6 +5,8 @@ import ea.badge.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/roles")
 public class RoleController {
@@ -12,13 +14,16 @@ public class RoleController {
     private RoleService roleService;
 
     @PostMapping
-    public void addRole(Role role){
-        roleService.addRole(role);
+    public Role addRole(@RequestBody Role role){
+        return roleService.addRole(role);
     }
     @DeleteMapping("/{id}")
     public void removeRole(@PathVariable Integer id){
         roleService.removeRole(id);
     }
+
+    @GetMapping
+    public List<Role> list(){return roleService.findAll();}
 
 
 }
