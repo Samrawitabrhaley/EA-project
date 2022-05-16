@@ -1,5 +1,6 @@
 package ea.badge.controller;
 
+import ea.badge.domain.Badge;
 import ea.badge.domain.Member;
 import ea.badge.service.BadgeService;
 import ea.badge.service.MemberService;
@@ -38,6 +39,18 @@ public class MemberController {
     @PutMapping()
     public Member updateMember(@Valid @RequestBody Member member, @PathVariable Long id){
        return memberService.updateById(member,id);
+    }
+    @PostMapping("/createBadge")
+    public Badge createBadge(@RequestBody Badge badge) {
+        return memberService.createBadge(badge);
+    }
+    @PostMapping("/{id}/replace")
+    public Badge replaceBadge(@RequestBody Badge bagde){
+        return memberService.replaceBadge(bagde);
+    }
+    @PutMapping("/{id}/deactivate")
+    public Badge deactivateBadge(@RequestBody Badge badge){
+        return memberService.deactivateBadge(badge.getId());
     }
 
 
