@@ -17,12 +17,17 @@ public class Member {
     private String firstName;
     private String lastName;
     private String emailAddress;
-    @OneToOne
-    @Column(name = "Role")
-    private Role role;
-    @OneToMany(mappedBy = "member")
-    private List<Membership> membership = new ArrayList<>();
+
+    @OneToMany()
+    @JoinTable(name = "Member_Role",
+        joinColumns = { @JoinColumn(name = "Member_id") },
+        inverseJoinColumns = { @JoinColumn(name = "Role_id") }
+    )
+    private Collection<Role> role = new ArrayList<>();
 
     @OneToMany(mappedBy = "member")
-    private List<Badge> badge = new ArrayList<>();
+    private Collection<Membership> membership = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member")
+    private Collection<Badge> badge = new ArrayList<>();
 }

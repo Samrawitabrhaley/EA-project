@@ -29,19 +29,7 @@ public class Membership {
     @JoinColumn(name="plan_Id")
     private Plan plan;
 
-    @ManyToMany
-    @JoinTable(name="Membership_Location",
-            joinColumns = {@JoinColumn(name="membership_Id", referencedColumnName = "membershipId")},
-            inverseJoinColumns = {@JoinColumn(name="location_Id", referencedColumnName = "locationId")}
-    )
-    private List<Location> locations;
-
-
-
-
-
-
-
-
-
+    @ManyToOne
+    @JoinColumn(name = "location_Id")
+    private Location location;
 }
