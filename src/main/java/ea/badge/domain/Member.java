@@ -17,6 +17,7 @@ public class Member {
     private String firstName;
     private String lastName;
     private String emailAddress;
+    
     @OneToMany()
     @JoinTable(name = "Member_Role",
         joinColumns = { @JoinColumn(name = "Member_id") },
