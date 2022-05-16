@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface MembershipService {
     public void addMembership(Membership membership);
-    public List<Membership> getMemberships();
+    public void removeMembership(Long id);
     }

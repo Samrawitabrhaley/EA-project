@@ -4,11 +4,10 @@ import ea.badge.domain.Member;
 import ea.badge.service.BadgeService;
 import ea.badge.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -18,15 +17,28 @@ public class MemberController {
     private MemberService memberService;
 
     @PostMapping
-    public void addMember(Member member){
-      memberService.addMember(member);
+    public Member createMember(Member member){
+     return memberService.createMember(member);
     }
 
     @GetMapping
-    public List<Member> members(){
-        return memberService.getMembers();
+    public Collection<Member> getAllMembers(){
+        return memberService.getAllMembers();
     }
 
+    @GetMapping("{/id}")
+    public Member getMemberById(@PathVariable Long id){
+        return memberService.getMemberById(id);
+    }
+
+    @DeleteMapping("{/id}")
+    public void deleteMember(@PathVariable Long id){
+        memberService.deleteById(id);
+    }
+    @PutMapping()
+    public Member updateMember(@Valid @RequestBody Member member, @PathVariable Long id){
+       return memberService.updateById(member,id);
+    }
 
 
 
