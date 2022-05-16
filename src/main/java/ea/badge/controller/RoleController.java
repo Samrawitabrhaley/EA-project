@@ -15,7 +15,7 @@ public class RoleController {
     public void addRole(Role role){
         roleService.addRole(role);
     }
-    @DeleteMapping("{/id}")
+    @DeleteMapping("/{id}")
     public void removeRole(@PathVariable Integer id){
         roleService.removeRole(id);
     }

@@ -26,12 +26,12 @@ public class MemberController {
         return memberService.getAllMembers();
     }
 
-    @GetMapping("{/id}")
+    @GetMapping("/{id}")
     public Member getMemberById(@PathVariable Long id){
         return memberService.getMemberById(id);
     }
 
-    @DeleteMapping("{/id}")
+    @DeleteMapping("/{id}")
     public void deleteMember(@PathVariable Long id){
         memberService.deleteById(id);
     }

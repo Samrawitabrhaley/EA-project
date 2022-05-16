@@ -21,7 +21,7 @@ public class MembershipController {
         membershipService.addMembership(membership);
     }
 
-    @DeleteMapping("{/id}")
+    @DeleteMapping("/{id}")
     public void removeMembership(@PathVariable Long id){
         membershipService.removeMembership(id);
     }

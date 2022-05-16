@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = {"timeSlots"})
+@RequestMapping("/timeslots")
 public class TimeSlotController {
 
     @Autowired
