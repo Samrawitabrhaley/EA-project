@@ -5,6 +5,7 @@ import ea.badge.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -12,12 +13,30 @@ public class MemberServiceImpl implements MemberService{
     private MemberRepository memberRepository;
 
     @Override
-    public void addMember(Member member) {
-       memberRepository.save(member);
+    public Member createMember(Member member) {
+       return memberRepository.save(member);
     }
 
     @Override
-    public List<Member> getMembers() {
+    public Collection<Member> getAllMembers() {
         return memberRepository.findAll();
+    }
+
+
+    @Override
+    public Member getMemberById(Long id) {
+        return memberRepository.getById(id);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        memberRepository.deleteById(id);
+
+    }
+
+    @Override
+    public Member updateById(Member member,Long id) {
+       return memberRepository.save(member);
+
     }
 }

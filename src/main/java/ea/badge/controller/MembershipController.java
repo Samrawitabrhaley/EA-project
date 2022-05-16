@@ -6,10 +6,7 @@ import ea.badge.domain.Membership;
 import ea.badge.service.MemberService;
 import ea.badge.service.MembershipService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,9 +21,9 @@ public class MembershipController {
         membershipService.addMembership(membership);
     }
 
-    @GetMapping
-    public List<Membership> memberships(){
-        return membershipService.getMemberships();
+    @DeleteMapping("{/id}")
+    public void removeMembership(@PathVariable Long id){
+        membershipService.removeMembership(id);
     }
 
 
