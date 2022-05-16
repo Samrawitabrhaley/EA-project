@@ -5,15 +5,14 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @NoArgsConstructor
 @Data
 public class Membership {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long membershipId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Enumerated(EnumType.STRING)
     private MembershipType membershipType;

@@ -4,14 +4,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name="Plan")
 public class Plan {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,5 +23,5 @@ public class Plan {
 
     @OneToMany
     @JoinColumn(name = "plan_id")
-    private List<Role> role = new ArrayList<>();
+    private List<Role> role;
 }
