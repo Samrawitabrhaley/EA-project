@@ -20,7 +20,6 @@ public class Member {
     @OneToOne
     @Column(name = "Role")
     private Role role;
-
     @OneToMany(mappedBy = "member")
     private List<Membership> membership = new ArrayList<>();
 
