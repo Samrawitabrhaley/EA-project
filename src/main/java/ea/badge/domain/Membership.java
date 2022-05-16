@@ -15,9 +15,6 @@ public class Membership {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    private MembershipType membershipType;
-
     private LocalDate startDate;
     private LocalDate endDate;
 
