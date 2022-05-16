@@ -25,6 +25,4 @@ public class RoleController {
     public void removeRole(@PathVariable Integer id){
         roleService.removeRole(id);
     }
-
-
 }

@@ -20,7 +20,7 @@ public class TimeSlotController {
     }
 
     @PostMapping
-    public Timeslot addNewTimeSlot(Timeslot timeslot) {
+    public Timeslot addNewTimeSlot(@RequestBody Timeslot timeslot) {
         return timeSlotService.addNewTimeSlot(timeslot);
     }
 }

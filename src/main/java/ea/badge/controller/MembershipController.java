@@ -18,7 +18,7 @@ public class MembershipController {
     private MembershipService membershipService;
 
     @PostMapping
-    public void addMembership(Membership membership){
+    public void addMembership(@RequestBody Membership membership){
         membershipService.addMembership(membership);
     }
 
