@@ -1,5 +1,6 @@
 package ea.badge.service;
 
+import ea.badge.domain.Badge;
 import ea.badge.domain.Membership;
 import ea.badge.repository.MembershipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ public class MembershipServiceImpl implements MembershipService{
     @Autowired
     private MembershipRepository membershipRepository;
 
+
     @Override
     public void addMembership(Membership membership) {
        membershipRepository.save(membership);
@@ -21,6 +23,8 @@ public class MembershipServiceImpl implements MembershipService{
     public void removeMembership(Long id) {
         membershipRepository.deleteById(id);
     }
+
+
 
 
 }
