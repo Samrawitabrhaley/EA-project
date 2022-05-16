@@ -1,13 +1,13 @@
 package ea.badge.domain;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-@Data
+@AllArgsConstructor
+@Getter@Setter
 public class Rule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
