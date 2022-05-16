@@ -20,4 +20,7 @@ public interface BadgeRepository extends JpaRepository<Badge, Integer> {
     @Modifying
     @Query("UPDATE Badge b SET b.active = false WHERE b.member.id = :id")
     Badge deactivateByMemberId(Integer id);
+    @Modifying
+    @Query("UPDATE Badge b SET b.active = true WHERE b.id = :id")
+    Badge activateById(Integer id);
 }

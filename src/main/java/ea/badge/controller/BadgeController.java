@@ -14,14 +14,20 @@ public class BadgeController {
     private BadgeService service;
 
     @GetMapping
-    public Collection<Badge> findAll() { return service.findAll(); }
+    public Collection<Badge> getAll() { return service.findAll(); }
     @GetMapping("/{id}")
-    public Badge findById(@PathVariable("id") Integer id) { return service.findById(id); }
+    public Badge getById(@PathVariable("id") Integer id) { return service.findById(id); }
 
-    @PostMapping
-    public Badge create(@RequestBody Badge badge) { return service.create(badge); }
+    @PostMapping @PutMapping
+    public Badge createOrUpdate(@RequestBody Badge badge) { return service.createOrUpdate(badge); }
     @PostMapping("/{id}/replace")
     public Badge replaceWithNew(@RequestBody Badge badge) { return service.replaceWithNew(badge); }
     @PutMapping("/{id}/deactivate")
     public Badge deactivate(@RequestBody Badge badge) { return service.deactivateById(badge.getId()); }
+
+    @PutMapping("/{id}/activate")
+    public Badge activate(@RequestBody Badge badge) { return service.activateById(badge.getId()); }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") Integer id) { service.deleteById(id); }
 }
