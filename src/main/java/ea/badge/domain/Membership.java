@@ -28,13 +28,4 @@ public class Membership {
     @ManyToOne
     @JoinColumn(name = "location_Id")
     private Location location;
-
-
-
-
-
-
-
-
-
 }
