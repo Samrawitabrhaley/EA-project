@@ -8,7 +8,9 @@ public interface BadgeService {
     Collection<Badge> findAll();
     Badge findById(Integer id);
     Collection<Badge> findByMemberId(Integer id);
-    Badge create(Badge badge);
+    Badge createOrUpdate(Badge badge);
     Badge replaceWithNew(Badge newBadge);
     Badge deactivateById(Integer id);
+    Badge activateById(Integer id);
+    void deleteById(Integer id);
 }
