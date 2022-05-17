@@ -13,6 +13,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -32,15 +33,15 @@ class TransactionServiceTest {
     @BeforeEach
     public void setup() {
 
-        Transaction transaction1 = new Transaction(1, LocalDate.now());
-        Transaction transaction2 = new Transaction(2, LocalDate.now());
+        Transaction transaction1 = new Transaction(1L, LocalDateTime.now());
+        Transaction transaction2 = new Transaction(2L, LocalDateTime.now());
         transactionList.add(transaction1);
         transactionList.add(transaction1);
     }
 
     @Test
     void addTransaction() {
-            Transaction transaction3=new Transaction(3, LocalDate.now());
+            Transaction transaction3=new Transaction(3L, LocalDateTime.now());
             Mockito.when(transactionRepository.save(transaction3)).thenReturn(transaction3);
             Transaction actual=transactionService.addTransaction(transaction3);
             assertThat(actual).isEqualTo(transaction3);

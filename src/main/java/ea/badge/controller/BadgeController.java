@@ -17,7 +17,12 @@ public class BadgeController {
     private BadgeService badgeService;
     private ModelMapper mapper = new ModelMapper();
 
-    @GetMapping
+    @PostMapping("/badges/{id}/scan/{location_id}")
+    private void scanBadge(@PathVariable("id") Long id, @PathVariable("location_id") Long locationId) {
+
+    }
+
+    @GetMapping()
     public Collection<BadgeDto> getAll() {
         return this.badgeService.findAll().stream()
                 .map(badge -> mapper.map(badge, BadgeDto.class))
@@ -25,7 +30,7 @@ public class BadgeController {
     }
 
     @GetMapping("/{id}")
-    public BadgeDto getById(@PathVariable("id") Integer id) {
+    public BadgeDto getById(@PathVariable("id") Long id) {
         return mapper.map(badgeService.findById(id), BadgeDto.class);
     }
 
@@ -55,7 +60,7 @@ public class BadgeController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Integer id) {
+    public void delete(@PathVariable("id") Long id) {
         badgeService.deleteById(id);
     }
 }

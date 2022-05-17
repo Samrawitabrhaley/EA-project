@@ -23,11 +23,4 @@ public class PlanDto {
     private List<Role> role;
     private Rule rule;
 
-//    public PlanDto mapToPlanDTO(Plan plan){
-//       this.setPlanName(plan.getPlanName());
-//       this.setPlanDescription(plan.getPlanDescription());
-//       this.setRole(plan.getRole());
-//       this.setRule(plan.getRule());
-//       return this;
-//    }
 }

@@ -4,8 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -13,7 +12,7 @@ import java.util.Date;
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @ManyToOne
     private Badge badge;
@@ -21,11 +20,12 @@ public class Transaction {
     @ManyToOne
     private Location location;
 
-    private LocalDate datetime;
+    private LocalDateTime datetime;
 
     private Boolean succeed;
 
-    public Transaction(Integer id, LocalDate datetime) {
+    public Transaction(Long id, LocalDateTime datetime) {
+
         this.id = id;
         this.datetime = datetime;
     }
