@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -26,9 +28,12 @@ public class Membership {
     @JoinColumn(name = "member_Id")
     private Member member;
 
-    @OneToOne
-    @JoinColumn(name="plan_Id")
-    private Plan plan;
+    @ManyToMany(cascade = CascadeType.REMOVE)
+    @JoinTable(name = "Membership_Plan",
+            joinColumns = { @JoinColumn(name = "Membership_id") },
+            inverseJoinColumns = { @JoinColumn(name = "Plan_id") }
+    )
+    private Collection<Plan> plan = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "location_Id")

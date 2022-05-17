@@ -17,12 +17,15 @@ public class Transaction {
     @ManyToOne
     private Badge badge;
 
-    @OneToOne
+    @ManyToOne
     private Location location;
 
     private LocalDateTime datetime;
 
+    private Boolean succeed;
+
     public Transaction(Long id, LocalDateTime datetime) {
+
         this.id = id;
         this.datetime = datetime;
     }

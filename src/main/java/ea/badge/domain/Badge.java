@@ -20,5 +20,5 @@ public class Badge {
     private Boolean active;
 
     @ManyToOne
-    Member member;
+    private Member member;
 }
