@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter@Setter
 public class Rule {
     @Id
@@ -16,4 +15,10 @@ public class Rule {
     private int perDurationDays;
     @Column(nullable = false)
     private int allowedLimit;
+
+    public Rule(long id, int perDurationDays, int allowedLimit) {
+        this.id = id;
+        this.perDurationDays = perDurationDays;
+        this.allowedLimit = allowedLimit;
+    }
 }

@@ -17,7 +17,7 @@ public class BadgeServiceImpl implements BadgeService {
 
     public Collection<Badge> findAll() { return repository.findAll(); }
 
-    public Badge findById(Long id) { return repository.findById(id).get(); }
+    public Badge findById(Long id) { return repository.getById(id); }
 
     @Override
     public Collection<Badge> findByMemberId(Long id) {

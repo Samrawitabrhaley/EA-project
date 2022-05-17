@@ -4,13 +4,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
 @NoArgsConstructor
 public class Transaction {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
@@ -19,7 +20,10 @@ public class Transaction {
     @OneToOne
     private Location location;
 
-    private Date datetime;
+    private LocalDateTime datetime;
 
-
+    public Transaction(Long id, LocalDateTime datetime) {
+        this.id = id;
+        this.datetime = datetime;
+    }
 }
