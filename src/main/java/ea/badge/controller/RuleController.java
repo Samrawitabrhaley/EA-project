@@ -33,6 +33,7 @@ public class RuleController {
     public Optional<RuleDto> findById(@PathVariable(name="id") Long id){
         return this.ruleService.findById(id).map(rule -> ruleDtoObj.mapToRuleDTO(rule));
     }
+    @RolesAllowed("admin")
     @DeleteMapping("/{id}")
     public ResponseEntity<RuleDto> deleteById(@PathVariable(name="id") Long id){
         if(this.ruleService.existsById(id)) {
