@@ -21,6 +21,5 @@ public class Transaction {
     private Location location;
 
     private Date datetime;
-g
 
 }

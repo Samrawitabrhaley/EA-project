@@ -1,6 +1,6 @@
 package ea.badge.domain;
 
-import junit.runner.Version;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

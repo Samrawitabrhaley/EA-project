@@ -46,13 +46,6 @@ class MemberServiceTest {
         memberlist.add(member1);
         memberlist.add(member2);
 
-
-
-
-
-
-
-
     }
 
     @Test
