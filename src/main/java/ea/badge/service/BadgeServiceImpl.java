@@ -3,6 +3,7 @@ package ea.badge.service;
 import ea.badge.domain.Badge;
 import ea.badge.repository.BadgeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +24,7 @@ public class BadgeServiceImpl implements BadgeService {
         return repository.findByMemberId(id);
     }
 
-    public Badge create(Badge badge) { return repository.save(badge); }
+    public Badge createOrUpdate(Badge badge) { return repository.save(badge); }
 
     @Override
     public Badge replaceWithNew(Badge newBadge) {
@@ -33,5 +34,14 @@ public class BadgeServiceImpl implements BadgeService {
 
     @Override
     public Badge deactivateById(Integer id) { return repository.deactivateById(id); }
+
+    @Override
+    public Badge activateById(Integer id) { return repository.activateById(id); }
+
+    @Override
+    public void deleteById(Integer id) {
+        repository.deleteById(id);
+    }
+
 
 }
