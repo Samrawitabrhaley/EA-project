@@ -69,7 +69,7 @@ class PlanServiceTest {
     void getById() {
         Mockito.when(planRepository.getById(1)).thenReturn(planList.get(0));
         Integer id=1;
-        Plan actual=planService.getById(id);
+        Plan actual=planService.findById(id);
         assertThat(actual.getPlanName()).isEqualTo("fulltime");
     }
 }
