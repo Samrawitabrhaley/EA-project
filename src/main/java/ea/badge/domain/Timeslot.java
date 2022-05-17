@@ -13,7 +13,7 @@ import java.time.LocalTime;
 public class Timeslot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     @Column(name = "start_time")
     private LocalTime startTime;
     @Column(name = "end_time")
@@ -25,7 +25,7 @@ public class Timeslot {
     @Enumerated(EnumType.STRING)
     private Days days;
 
-    public Timeslot(int id, LocalTime startTime, LocalTime endTime) {
+    public Timeslot(Long id, LocalTime startTime, LocalTime endTime) {
         this.id = id;
         this.startTime = startTime;
         this.endTime = endTime;

@@ -17,10 +17,10 @@ public class BadgeServiceImpl implements BadgeService {
 
     public Collection<Badge> findAll() { return repository.findAll(); }
 
-    public Badge findById(Integer id) { return repository.getById(id); }
+    public Badge findById(Long id) { return repository.getById(id); }
 
     @Override
-    public Collection<Badge> findByMemberId(Integer id) {
+    public Collection<Badge> findByMemberId(Long id) {
         return repository.findByMemberId(id);
     }
 
@@ -33,14 +33,13 @@ public class BadgeServiceImpl implements BadgeService {
     }
 
     @Override
-    public Badge deactivateById(Integer id) {
-        return repository.deactivateById(id); }
+    public Badge deactivateById(Long id) { return repository.deactivateById(id); }
 
     @Override
-    public Badge activateById(Integer id) { return repository.activateById(id); }
+    public Badge activateById(Long id) { return repository.activateById(id); }
 
     @Override
-    public void deleteById(Integer id) {
+    public void deleteById(Long id) {
         repository.deleteById(id);
     }
 

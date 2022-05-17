@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Rule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(nullable = false)
     private int perDurationDays;
     @Column(nullable = false)
