@@ -16,7 +16,7 @@ import java.util.List;
 public class Plan {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "PlanName", nullable = false)
     private String planName;
@@ -35,7 +35,7 @@ public class Plan {
     @JoinColumn(name = "Rule_id")
     private Rule rule;
 
-    public Plan(Integer id, String planName, String planDescription) {
+    public Plan(Long id, String planName, String planDescription) {
         this.id = id;
         this.planName = planName;
         this.planDescription = planDescription;

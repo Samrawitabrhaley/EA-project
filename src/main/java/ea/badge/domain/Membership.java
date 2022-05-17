@@ -20,6 +20,10 @@ public class Membership {
     private LocalDate startDate;
     private LocalDate endDate;
 
+    @Column
+    @Enumerated(EnumType.STRING)
+    private MembershipType membershipType;
+
     @ManyToOne
     @JoinColumn(name = "member_Id")
     private Member member;

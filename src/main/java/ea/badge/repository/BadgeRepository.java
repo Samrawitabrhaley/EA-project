@@ -10,17 +10,17 @@ import java.util.Collection;
 
 
 @Repository
-public interface BadgeRepository extends JpaRepository<Badge, Integer> {
-    @Query("FROM Badge b WHERE b.member.id = :id") //TODO Why this method returns collection since it gets just one object?????
-    Collection<Badge> findByMemberId(Integer id);
+public interface BadgeRepository extends JpaRepository<Badge, Long> {
+    @Query("FROM Badge b WHERE b.member.id = :id")
+    Collection<Badge> findByMemberId(Long id);
 
     @Modifying
     @Query("UPDATE Badge b SET b.active = false WHERE b.id = :id")
-    Badge deactivateById(Integer id);
+    Badge deactivateById(Long id);
     @Modifying
     @Query("UPDATE Badge b SET b.active = false WHERE b.member.id = :id")
-    Badge deactivateByMemberId(Integer id);
+    Badge deactivateByMemberId(Long id);
     @Modifying
     @Query("UPDATE Badge b SET b.active = true WHERE b.id = :id")
-    Badge activateById(Integer id);
+    Badge activateById(Long id);
 }
