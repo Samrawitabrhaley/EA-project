@@ -34,4 +34,10 @@ public class Plan {
     @OneToOne()
     @JoinColumn(name = "Rule_id")
     private Rule rule;
+
+    public Plan(Integer id, String planName, String planDescription) {
+        this.id = id;
+        this.planName = planName;
+        this.planDescription = planDescription;
+    }
 }

@@ -22,10 +22,6 @@ public class PlanServiceImpl implements PlanService {
         return planRepository.findById(id).get();
     }
 
-//    @Override
-//    public Plan updatePlan(Plan plan) {
-//        return planRepository.save(plan);
-//    }
 
     @Override
     public Plan addPlan(Plan plan) {
