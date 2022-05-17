@@ -32,7 +32,7 @@ public class Plan {
     @JoinColumn(name = "Rule_id")
     private Rule rule;
 
-    public Plan(Integer id, String planName, String planDescription) {
+    public Plan(Long id, String planName, String planDescription) {
         this.id = id;
         this.planName = planName;
         this.planDescription = planDescription;

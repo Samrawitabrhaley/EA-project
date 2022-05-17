@@ -18,6 +18,9 @@ public class Membership {
     private LocalDate startDate;
     private LocalDate endDate;
 
+    @Enumerated
+    private MembershipType membershipType;
+
     @ManyToOne
     @JoinColumn(name = "member_Id")
     private Member member;

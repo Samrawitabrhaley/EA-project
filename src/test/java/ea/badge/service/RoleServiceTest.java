@@ -34,8 +34,8 @@ class RoleServiceTest {
     @BeforeEach
     public void setup() {
 
-        Role role1=new Role(1,"Student");
-        Role role2=new Role(2,"Faculty");
+        Role role1=new Role(1L,"Student");
+        Role role2=new Role(2L,"Faculty");
         rolelist.add(role1);
         rolelist.add(role2);
 
@@ -59,7 +59,7 @@ class RoleServiceTest {
 
     @Test
     void addRole() {
-        Role role3=new Role(1,"Stuff");
+        Role role3=new Role(1L,"Stuff");
         Mockito.when(roleRepository.save(role3)).thenReturn(role3);
         Role actual=roleService.addRole(role3);
         assertThat(actual).isEqualTo(role3);

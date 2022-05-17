@@ -25,7 +25,7 @@ public class Timeslot {
     @Enumerated(EnumType.STRING)
     private Days days;
 
-    public Timeslot(int id, LocalTime startTime, LocalTime endTime) {
+    public Timeslot(Long id, LocalTime startTime, LocalTime endTime) {
         this.id = id;
         this.startTime = startTime;
         this.endTime = endTime;
