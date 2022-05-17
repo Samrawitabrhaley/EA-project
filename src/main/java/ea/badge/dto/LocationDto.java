@@ -29,20 +29,4 @@ public class LocationDto {
 
     private LocationType locationType;
 
-    private List<Plan> plans = new ArrayList<>();
-
-    private List<Membership> memberships = new ArrayList<>();
-
-    private List<Timeslot> timeslots = new ArrayList<>();
-
-    public void addMember(Membership membership){
-        this.memberships.add(membership);
-    }
-    public void addTimeSlot(Timeslot timeSlot){
-        this.timeslots.add(timeSlot);
-    }
-    public void addPlan(Plan plan){
-        this.plans.add(plan);
-    }
-
 }
