@@ -18,7 +18,8 @@ public class Membership {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    @Enumerated
+    @Column
+    @Enumerated(EnumType.STRING)
     private MembershipType membershipType;
 
     @ManyToOne
