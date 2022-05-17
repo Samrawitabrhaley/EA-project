@@ -13,7 +13,9 @@ public interface PlanService {
 
     public List<Plan> findAll();
 
-    public Plan getById(Integer id);
+    public Plan findById(Integer id);
+
+//    public Plan updatePlan(Plan plan);
 
 
 }

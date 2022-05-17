@@ -1,48 +1,57 @@
 package ea.badge.controller;
 
 import ea.badge.domain.Location;
+import ea.badge.domain.Plan;
+import ea.badge.dto.LocationDto;
+import ea.badge.repository.LocationRepository;
 import ea.badge.service.LocationService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/locations")
 public class LocationController {
 
     @Autowired
     private LocationService locationService;
+    private ModelMapper mapper = new ModelMapper();
 
-    @GetMapping("")
-    public List<Location> findAll(){
-        return this.locationService.findAll();
+    @GetMapping()
+    public List<LocationDto> findAll(){
+
+        return this.locationService.findAll().stream()
+                .map(location -> mapper.map(location, LocationDto.class))
+                .collect(Collectors.toList());
     }
-    @GetMapping("/{id}")
-    public Optional<Location> findById(@PathVariable(name="id") Long id){
-        return this.locationService.findById(id);
+    @GetMapping("{id}")
+    @Transactional
+    public LocationDto findById(@PathVariable Long id) {
+        return mapper.map(locationService.findById(id).get(), LocationDto.class);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Location> deleteById(@PathVariable(name="id") Long id){
-        if(this.locationService.existsById(id)) {
-            this.locationService.deleteById(id);
-            return new ResponseEntity<>(HttpStatus.OK);
-        }else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public void deleteById(@PathVariable Long id){
+         locationService.deleteById(id);
     }
+
     @PostMapping("")
-    public Location save (@RequestBody Location location){
-        return locationService.save(location);
+    public LocationDto save(@RequestBody LocationDto location){
+
+        return mapper.map(locationService.save(mapper.map(location, Location.class)), LocationDto.class);
     }
 
     @PutMapping("/{id}")
-    public Location update(@RequestBody Location newLocation, @PathVariable(name="id") Long id) {
-        System.out.println("Editing data");
-        return this.locationService.findById(id)
+    public LocationDto update(@RequestBody Location newLocation, @PathVariable Long id) {
+
+        return mapper.map(this.locationService.findById(id)
                 .map(location -> {
                     location.setName(newLocation.getName());
                     location.setLocationType(newLocation.getLocationType());
@@ -53,9 +62,8 @@ public class LocationController {
                     location.setTimeslots(newLocation.getTimeslots());
                     return locationService.save(location);
                 }).orElseGet(() -> {
-                    newLocation.setId(id);
                     return locationService.save(newLocation);
-                });
+                }), LocationDto.class);
     }
 
 
