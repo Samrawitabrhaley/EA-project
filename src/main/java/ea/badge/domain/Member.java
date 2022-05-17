@@ -22,7 +22,7 @@ public class Member {
     private String lastName;
     private String emailAddress;
 
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(name = "Member_Role",
         joinColumns = { @JoinColumn(name = "Member_id") },
         inverseJoinColumns = { @JoinColumn(name = "Role_id") }
