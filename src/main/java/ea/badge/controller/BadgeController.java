@@ -28,7 +28,7 @@ public class BadgeController {
         return badgeScan.scan(badgeId, locationId);
     }
 
-    @GetMapping
+    @GetMapping()
     public Collection<BadgeDto> getAll() {
         return this.badgeService.findAll().stream()
                 .map(badge -> mapper.map(badge, BadgeDto.class))

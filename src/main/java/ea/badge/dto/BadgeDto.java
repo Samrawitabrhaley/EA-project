@@ -20,4 +20,5 @@ public class BadgeDto {
     private LocalDate activationDate;
     private LocalDate expirationDate;
     private Boolean active;
+
 }
