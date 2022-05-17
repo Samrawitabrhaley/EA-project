@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -20,6 +21,10 @@ public class Transaction {
     @OneToOne
     private Location location;
 
-    private Date datetime;
+    private LocalDate datetime;
 
+    public Transaction(Integer id, LocalDate datetime) {
+        this.id = id;
+        this.datetime = datetime;
+    }
 }

@@ -5,6 +5,7 @@ import ea.badge.domain.Role;
 import ea.badge.domain.Rule;
 import ea.badge.repository.RoleRepository;
 import ea.badge.repository.RuleRepository;
+import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -41,6 +42,7 @@ class RuleServiceTest {
         rulelist.add(rule1);
         rulelist.add(rule2);
 
+
     }
 
 
@@ -61,13 +63,18 @@ class RuleServiceTest {
         assertThat(actual).isEqualTo(rulelist);
     }
 
-//    @Test
-//    void findById() {
-//        Mockito.when(ruleRepository.getById(1L)).thenReturn(rulelist.get(0));
-//        Long id=1L;
-//        Rule actual=ruleService.findById(id).get();
-//        assertThat(actual.getPerDurationDays()).isEqualTo(7);
-//    }
+      @Test
+     void findById() {
+          Long id = 3L;
+          Rule rule4=new Rule(3L,7,1);
+          Optional<Rule> ruleOptional = Optional.of(rule4);
+          Mockito.when(ruleRepository.findById(id))
+                  .thenReturn(ruleOptional);
+          Optional<Rule> actual = ruleService.findById(id);
+          assertThat(actual.get().getId())
+                  .isEqualTo(id);
+      }
+
 
     @Test
     void deleteById() {
