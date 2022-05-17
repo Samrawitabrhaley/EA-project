@@ -13,7 +13,7 @@ public interface MemberService {
     void deleteById(Long id);
     Member updateById(Member member,Long id);
     Badge createOrUpdate(Badge badge);
-    Badge replaceBadge(Badge bagde);
-    Badge deactivateBadge(Integer id);
+    Badge replaceBadge(Badge badge);
+    Badge deactivateBadge(Long id);
 
 }

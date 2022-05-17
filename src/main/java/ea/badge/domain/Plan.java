@@ -13,7 +13,7 @@ import java.util.List;
 public class Plan {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "PlanName", nullable = false)
     private String planName;

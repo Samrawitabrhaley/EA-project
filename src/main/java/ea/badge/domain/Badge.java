@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class Badge {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private LocalDate activationDate;
     private LocalDate expirationDate;
     private Boolean active;

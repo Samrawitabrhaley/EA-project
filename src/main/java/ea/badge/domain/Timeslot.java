@@ -11,7 +11,7 @@ import java.time.LocalTime;
 public class Timeslot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     @Column(name = "start_time")
     private LocalTime startTime;
     @Column(name = "end_time")

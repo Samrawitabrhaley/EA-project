@@ -54,7 +54,7 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public Badge deactivateBadge(Integer id) {
+    public Badge deactivateBadge(Long id) {
         return badgeService.deactivateById(id);
     }
 }

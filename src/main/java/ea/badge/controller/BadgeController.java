@@ -13,10 +13,15 @@ public class BadgeController {
     @Autowired
     private BadgeService service;
 
+    @PostMapping("/badges/{id}/scan/{location_id}")
+    private void scanBadge(@PathVariable("id") Long id, @PathVariable("location_id") Long locationId) {
+
+    }
+
     @GetMapping
     public Collection<Badge> getAll() { return service.findAll(); }
     @GetMapping("/{id}")
-    public Badge getById(@PathVariable("id") Integer id) { return service.findById(id); }
+    public Badge getById(@PathVariable("id") Long id) { return service.findById(id); }
 
     @PostMapping @PutMapping
     public Badge createOrUpdate(@RequestBody Badge badge) { return service.createOrUpdate(badge); }
@@ -29,5 +34,5 @@ public class BadgeController {
     public Badge activate(@RequestBody Badge badge) { return service.activateById(badge.getId()); }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Integer id) { service.deleteById(id); }
+    public void delete(@PathVariable("id") Long id) { service.deleteById(id); }
 }
