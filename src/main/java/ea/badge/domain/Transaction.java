@@ -4,22 +4,29 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
 @Data
 @NoArgsConstructor
 public class Transaction {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
     private Badge badge;
 
-    @OneToOne
+    @ManyToOne
     private Location location;
 
-    private Date datetime;
+    private LocalDate datetime;
 
+    private Boolean succeed;
 
+    public Transaction(Integer id, LocalDate datetime) {
+        this.id = id;
+        this.datetime = datetime;
+    }
 }

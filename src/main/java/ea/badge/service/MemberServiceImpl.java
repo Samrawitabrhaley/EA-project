@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.Optional;
+
 @Service
 public class MemberServiceImpl implements MemberService{
     @Autowired
@@ -39,7 +40,11 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public Member updateById(Member member,Long id) {
-       return memberRepository.save(member);
+        if(memberRepository.findById(id).isPresent()) {
+            return memberRepository.save(member);
+        } else{
+            throw new RuntimeException("Member Not Found");
+        }
 
     }
 

@@ -21,7 +21,7 @@ public class Plan {
     @Column(name = "Description", nullable = true)
     private String planDescription;
 
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(name = "Plan_Role",
             joinColumns = { @JoinColumn(name = "Plan_id") },
             inverseJoinColumns = { @JoinColumn(name = "Role_id") }
@@ -31,4 +31,10 @@ public class Plan {
     @OneToOne()
     @JoinColumn(name = "Rule_id")
     private Rule rule;
+
+    public Plan(Integer id, String planName, String planDescription) {
+        this.id = id;
+        this.planName = planName;
+        this.planDescription = planDescription;
+    }
 }

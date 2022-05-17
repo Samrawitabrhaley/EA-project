@@ -1,7 +1,10 @@
 package ea.badge.domain;
 
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,6 +12,7 @@ import java.util.Collection;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class Member {
     @Id
@@ -18,7 +22,7 @@ public class Member {
     private String lastName;
     private String emailAddress;
 
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(name = "Member_Role",
         joinColumns = { @JoinColumn(name = "Member_id") },
         inverseJoinColumns = { @JoinColumn(name = "Role_id") }
@@ -30,4 +34,14 @@ public class Member {
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
     private Collection<Badge> badge = new ArrayList<>();
+
+    public Member(Long id, String firstName, String lastName, String emailAddress) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+    }
+
+
+
 }
