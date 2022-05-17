@@ -1,7 +1,9 @@
 package ea.badge.controller;
 
 import ea.badge.domain.Badge;
+import ea.badge.domain.Transaction;
 import ea.badge.dto.BadgeDto;
+import ea.badge.service.BadgeScan;
 import ea.badge.service.BadgeService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +17,15 @@ import java.util.stream.Collectors;
 public class BadgeController {
     @Autowired
     private BadgeService badgeService;
+
+    @Autowired
+    private BadgeScan badgeScan;
+
     private ModelMapper mapper = new ModelMapper();
 
-    @PostMapping("/badges/{id}/scan/{location_id}")
-    private void scanBadge(@PathVariable("id") Long id, @PathVariable("location_id") Long locationId) {
-
+    @PostMapping("/{id}/scan/{location_id}")
+    private Transaction scanBadge(@PathVariable("id") Long badgeId, @PathVariable("location_id") Long locationId) { //DTA Transaction
+        return badgeScan.scan(badgeId, locationId);
     }
 
     @GetMapping

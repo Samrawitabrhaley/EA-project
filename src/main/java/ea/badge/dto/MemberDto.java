@@ -21,8 +21,4 @@ public class MemberDto {
     private String firstName;
     private String lastName;
     private String emailAddress;
-    private Collection<Role> role = new ArrayList<>();
-    private Collection<Membership> membership = new ArrayList<>();
-    private Collection<Badge> badge = new ArrayList<>();
-
 }
