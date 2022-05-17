@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -27,6 +28,7 @@ public class RuleController {
         return this.ruleService.findAll().stream()
                 .map(rule -> ruleDtoObj.mapToRuleDTO(rule)).collect(Collectors.toList());
     }
+    @RolesAllowed("user")
     @GetMapping("/{id}")
     public Optional<RuleDto> findById(@PathVariable(name="id") Long id){
         return this.ruleService.findById(id).map(rule -> ruleDtoObj.mapToRuleDTO(rule));
