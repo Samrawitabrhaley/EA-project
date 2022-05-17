@@ -30,8 +30,8 @@ public class RuleController {
     }
     @RolesAllowed("user")
     @GetMapping("/{id}")
-    public Optional<RuleDto> findById(@PathVariable(name="id") Long id){
-        return this.ruleService.findById(id).map(rule -> ruleDtoObj.mapToRuleDTO(rule));
+    public RuleDto findById(@PathVariable(name="id") Long id){
+        return this.ruleDtoObj.mapToRuleDTO(this.ruleService.findById(id));
     }
     @RolesAllowed("admin")
     @DeleteMapping("/{id}")
@@ -52,14 +52,6 @@ public class RuleController {
 
     @PutMapping("/{id}")
     public RuleDto update(@RequestBody Rule  newRule, @PathVariable(name="id") Long id) {
-        System.out.println("Editing data");
-        return this.ruleService.findById(id)
-                .map(rule -> {
-                    return ruleDtoObj.mapToRuleDTO(ruleService.save(newRule));
-                })
-                .orElseGet(() -> {
-                    newRule.setId(id);
-                    return ruleDtoObj.mapToRuleDTO(ruleService.save(newRule));
-                });
+        return this.ruleDtoObj.mapToRuleDTO(this.ruleService.update(newRule,id));
     }
 }

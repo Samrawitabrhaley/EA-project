@@ -60,16 +60,13 @@ class PlanServiceTest {
         Mockito.when(planRepository.findAll()).thenReturn(planList);
         Collection<Plan> actual = planService.findAll();
         assertThat(actual).isEqualTo(planList);
-
-
-
     }
 
     @Test
     void getById() {
         Mockito.when(planRepository.getById(1)).thenReturn(planList.get(0));
         Integer id=1;
-        Plan actual=planService.getById(id);
+        Plan actual=planService.findById(id);
         assertThat(actual.getPlanName()).isEqualTo("fulltime");
     }
 }
