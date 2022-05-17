@@ -10,7 +10,9 @@ public class BadgeScanImpl implements BadgeScan {
     @Override
     public Transaction scan(Long badgeId, Long locationId) {
         // get the rule of a plan for a location where this member is a member
-        membershipService.getMembershipByMemberIdAndByLocationId(badgeId, locationId).getPlan().getRule();
+        System.out.println( "membership type: " +
+        membershipService.getMembershipByMemberIdAndByLocationId(badgeId, locationId).getMembershipType()
+        );
         return null;
     }
 }
