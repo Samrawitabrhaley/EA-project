@@ -80,7 +80,6 @@ class MemberServiceTest {
     }
     @Test
     public void updateByIdTest(){
-        //Member member3=new Member(1L,"samri","Abrha","samri@gmail.com");
         Member member4=new Member(1L,"James","Abrha","samri@gmail.com");
         Mockito.when(memberRepository.findById(1L)).thenReturn(Optional.of(member4));
         Mockito.when(memberRepository.save(member4)).thenReturn(member4);
