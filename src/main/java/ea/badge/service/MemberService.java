@@ -4,7 +4,7 @@ import ea.badge.domain.Badge;
 import ea.badge.domain.Member;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.Optional;
 
 public interface MemberService {
     public Member createMember(Member member);
