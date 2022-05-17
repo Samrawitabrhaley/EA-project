@@ -18,9 +18,10 @@ public class PlanServiceImpl implements PlanService {
     }
 
     @Override
-    public Plan getById(Integer id) {
-        return planRepository.getById(id);
+    public Plan findById(Integer id) {
+        return planRepository.findById(id).get();
     }
+
 
     @Override
     public Plan addPlan(Plan plan) {

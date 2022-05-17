@@ -1,7 +1,9 @@
 package ea.badge.domain;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -10,6 +12,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
+@Getter@Setter
 public class Plan {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +24,7 @@ public class Plan {
     @Column(name = "Description", nullable = true)
     private String planDescription;
 
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(name = "Plan_Role",
             joinColumns = { @JoinColumn(name = "Plan_id") },
             inverseJoinColumns = { @JoinColumn(name = "Role_id") }

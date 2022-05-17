@@ -33,7 +33,8 @@ public class BadgeServiceImpl implements BadgeService {
     }
 
     @Override
-    public Badge deactivateById(Integer id) { return repository.deactivateById(id); }
+    public Badge deactivateById(Integer id) {
+        return repository.deactivateById(id); }
 
     @Override
     public Badge activateById(Integer id) { return repository.activateById(id); }
