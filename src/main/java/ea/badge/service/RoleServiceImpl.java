@@ -14,11 +14,11 @@ public class RoleServiceImpl implements RoleService{
 
     public Collection<Role> findAll() { return roleRepository.findAll(); }
 
-    public Role findById(Integer id) { return roleRepository.findById(id).get(); }
+    public Role findById(Integer id) { return roleRepository.getById(id); }
 
     @Override
-    public void addRole(Role role) {
-       roleRepository.save(role);
+    public Role addRole(Role role) {
+       return roleRepository.save(role);
     }
 
     @Override
