@@ -1,3 +1,5 @@
+server:
+  port: 8000
 spring:
   application:
     name: ea_badge
@@ -14,10 +16,19 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
         implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
+keycloak:
+  realm: EA-Badge-Realm
+  auth-server-url: http://localhost:8080/
+  ssl-required: none
+  resource: ea-badge
+  credentials:
+    secret: 9JTFJ1oigyjjENYP3IlDw8wmEGuXNBSY
+  use-resource-role-mappings: true
+  bearer-only: true
 logging:
   file:
     name: /Coding/Logging/${spring.application.name}/log
