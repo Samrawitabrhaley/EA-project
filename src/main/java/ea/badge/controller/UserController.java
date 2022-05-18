@@ -9,6 +9,8 @@ import ea.badge.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.security.RolesAllowed;
 import java.util.Collection;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -46,6 +48,8 @@ public class UserController {
     public void deleteUser(@PathVariable  Integer id){
         userService.deleteUser(id);
     }
+
+    @RolesAllowed("admin")
     @PostMapping("/login")
         public MemberDto login(@RequestBody UserDto userDto){
         String username=userDto.getUsername();
