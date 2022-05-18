@@ -5,6 +5,7 @@ import ea.badge.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -15,6 +16,11 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public Transaction addTransaction(Transaction transaction) {
         return transactionRepository.save(transaction);
+    }
+
+    @Override
+    public Collection<Transaction> getTransactionsByMemberId(Long id) {
+        return transactionRepository.getTransactionsByMemberId(id);
     }
 
     @Override

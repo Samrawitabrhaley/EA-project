@@ -3,6 +3,7 @@ package ea.badge.service;
 import ea.badge.domain.Badge;
 import ea.badge.domain.Member;
 import ea.badge.domain.Plan;
+import ea.badge.domain.Transaction;
 import ea.badge.repository.MemberRepository;
 import ea.badge.repository.PlanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class MemberServiceImpl implements MemberService{
     private MemberRepository memberRepository;
     @Autowired
     private BadgeService badgeService;
+    @Autowired
+    private TransactionService transactionService;
+
 //    @Autowired
 //    private PlanRepository planRepository;
 
@@ -78,6 +82,11 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public Badge deactivateBadge(Long id) {
         return badgeService.deactivateById(id);
+    }
+
+    @Override
+    public Collection<Transaction> getTransactionsByMemberId(Long id) {
+        return transactionService.getTransactionsByMemberId(id);
     }
 
 //    @Override

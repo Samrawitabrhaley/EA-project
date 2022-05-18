@@ -5,6 +5,7 @@ import ea.badge.domain.Member;
 import ea.badge.dto.BadgeDto;
 import ea.badge.dto.LocationDto;
 import ea.badge.dto.MemberDto;
+import ea.badge.dto.TransactionDto;
 import ea.badge.service.BadgeService;
 import ea.badge.service.MemberService;
 import org.modelmapper.ModelMapper;
@@ -60,7 +61,7 @@ public class MemberController {
         return mapper.map(memberService.createOrUpdateBadge(memberId, badge),
                 BadgeDto.class);
     }
-    @GetMapping("{memberId}/badges")
+    @GetMapping("/{memberId}/badges")
     public Collection<BadgeDto> getMemberBadges(@PathVariable("memberId") Long id){
         return memberService.getMemberBadges(id).stream()
                 .map(badge -> mapper.map(badge, BadgeDto.class))
@@ -82,5 +83,12 @@ public class MemberController {
     public BadgeDto deactivateBadge(@PathVariable("badgeId") Long badgeId){
         return mapper.map(memberService.deactivateBadge(badgeId), BadgeDto.class);
 //        return memberService.deactivateBadge(badge.getId());
+    }
+
+    @GetMapping("/{memberId}/transactions")
+    public Collection<TransactionDto> getMemberTransactions(@PathVariable("memberId") Long id){
+        return memberService.getTransactionsByMemberId(id).stream()
+                .map(transaction -> mapper.map(transaction, TransactionDto.class))
+                .collect(Collectors.toList());
     }
 }
