@@ -26,7 +26,7 @@ public class BadgeScanImpl implements BadgeScan {
         //wip to do
         if(Objects.nonNull(membership)) {
             Rule rule = membership.getPlan().stream().findFirst().get().getRule();
-            int numberOfTransaction = transactionService.getNumberOfTransactionForNumberOfDaysByBadgeId(badgeId, rule.getPerDurationDays());
+            int numberOfTransaction = transactionService.getTransactionForNumberOfDaysByBadgeId(badgeId, rule.getPerDurationDays()).size();
             if(numberOfTransaction > rule.getAllowedLimit()) {
                 transactionSucceed = false;
             }

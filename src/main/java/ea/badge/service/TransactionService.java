@@ -10,6 +10,6 @@ import java.util.List;
 public interface TransactionService {
     Transaction addTransaction(Transaction transaction);
     Collection<Transaction> getTransactionsByMemberId(Long id);
-    int getNumberOfTransactionForNumberOfDaysByBadgeId(Long badgeId, int numberOfDays);
+    Collection<Transaction> getTransactionForNumberOfDaysByBadgeId(Long badgeId, int numberOfDays);
     List<Transaction> findAll();
 }
