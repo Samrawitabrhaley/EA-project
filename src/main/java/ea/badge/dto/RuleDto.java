@@ -1,13 +1,10 @@
 package ea.badge.dto;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
 @Component
 @NoArgsConstructor
-@Data
+@AllArgsConstructor
 @Getter@Setter
 public class RuleDto {
     private int perDurationDays;

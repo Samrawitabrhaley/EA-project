@@ -3,10 +3,7 @@ import ea.badge.domain.Location;
 import ea.badge.domain.Member;
 import ea.badge.domain.MembershipType;
 import ea.badge.domain.Plan;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -14,7 +11,7 @@ import java.util.Collection;
 
 @Component
 @NoArgsConstructor
-@Data
+@AllArgsConstructor
 @Getter@Setter
 public class MembershipDto {
     private LocalDate startDate;

@@ -2,15 +2,12 @@ package ea.badge.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import ea.badge.domain.Member;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
 @Component
 @NoArgsConstructor
-@Data
+@AllArgsConstructor
 @Getter
 @Setter
 public class UserDto {
