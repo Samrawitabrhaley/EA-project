@@ -39,12 +39,4 @@ public class PlanServiceImpl implements PlanService {
     public void removePlan(Integer id) {
         planRepository.deleteById(id);
     }
-
-
-
-
-
-
-
-
 }

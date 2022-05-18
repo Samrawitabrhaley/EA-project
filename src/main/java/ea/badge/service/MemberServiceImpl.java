@@ -2,7 +2,9 @@ package ea.badge.service;
 
 import ea.badge.domain.Badge;
 import ea.badge.domain.Member;
+import ea.badge.domain.Plan;
 import ea.badge.repository.MemberRepository;
+import ea.badge.repository.PlanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,8 @@ public class MemberServiceImpl implements MemberService{
     private MemberRepository memberRepository;
     @Autowired
     private BadgeService badgeService;
+//    @Autowired
+//    private PlanRepository planRepository;
 
     @Override
     public Member createMember(Member member) {
@@ -75,4 +79,9 @@ public class MemberServiceImpl implements MemberService{
     public Badge deactivateBadge(Long id) {
         return badgeService.deactivateById(id);
     }
+
+//    @Override
+//    public Collection<Plan> getPlansByMemberId(Long memberId) {
+//        return planRepository.getPlansByMemberId(memberId);
+//    }
 }

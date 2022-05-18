@@ -20,12 +20,13 @@ public class BadgeScanImpl implements BadgeScan {
     @Override
     public Transaction scan(Long badgeId, Long locationId) {
         Transaction transaction = null;
+        Boolean transactionSucceed = false;
         Membership membership = membershipService.getMembershipByMemberIdAndByLocationId(badgeId, locationId);
-        if(Objects.nonNull(membership)) {
-            transaction = transactionService.addTransaction(new Transaction(badgeService.findById(badgeId),membership.getLocation(), true));
-        } else {
-            transaction = transactionService.addTransaction(new Transaction(badgeService.findById(badgeId),membership.getLocation(), false));
-        }
+        // TODO more logic, membership, plane
+
+        transactionSucceed = Objects.nonNull(membership) ? true : false; // check if a member of this location
+
+        transaction = transactionService.addTransaction(new Transaction(badgeService.findById(badgeId),membership.getLocation(), transactionSucceed));
 
         return transaction;
     }
