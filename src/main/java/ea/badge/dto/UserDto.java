@@ -1,5 +1,6 @@
 package ea.badge.dto;
 
+import ea.badge.domain.Member;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,4 +16,5 @@ public class UserDto {
 
     private String username;
     private String password;
+    private Member member;
 }
