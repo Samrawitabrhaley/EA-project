@@ -10,10 +10,10 @@ import java.util.Optional;
 public interface LocationService {
     public Location save(Location location);
     public List<Location> findAll();
-    public Optional<Location> findById(Long id);
+    public Location findById(Long id);
     public boolean existsById(Long id);
     public void deleteById(Long id);
-    public Location update(Location location);
+    public Location update(Location location, Long id);
 
 
 }
