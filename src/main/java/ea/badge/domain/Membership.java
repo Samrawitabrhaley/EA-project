@@ -1,5 +1,6 @@
 package ea.badge.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -26,6 +27,7 @@ public class Membership {
 
     @ManyToOne
     @JoinColumn(name = "member_Id")
+//    @JsonBackReference
     private Member member;
 
     @ManyToMany(cascade = CascadeType.REMOVE)
@@ -33,10 +35,12 @@ public class Membership {
             joinColumns = { @JoinColumn(name = "Membership_id") },
             inverseJoinColumns = { @JoinColumn(name = "Plan_id") }
     )
+//    @JsonBackReference
     private Collection<Plan> plan = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "location_Id")
+//    @JsonBackReference
     private Location location;
 
     public Membership(Long id, LocalDate startDate, LocalDate endDate) {

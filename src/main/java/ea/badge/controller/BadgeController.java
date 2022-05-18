@@ -1,12 +1,17 @@
 package ea.badge.controller;
 
 import ea.badge.domain.Badge;
+import ea.badge.domain.Member;
 import ea.badge.domain.Transaction;
 import ea.badge.dto.BadgeDto;
+import ea.badge.dto.LocationDto;
+import ea.badge.dto.MemberDto;
+import ea.badge.dto.TransactionDto;
 import ea.badge.service.BadgeScan;
 import ea.badge.service.BadgeService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -21,11 +26,14 @@ public class BadgeController {
     @Autowired
     private BadgeScan badgeScan;
 
-    private ModelMapper mapper = new ModelMapper();
+    @Autowired
+    ModelMapper mapper;
 
-    @PostMapping("/{id}/scan/{location_id}")
-    private Transaction scanBadge(@PathVariable("id") Long badgeId, @PathVariable("location_id") Long locationId) { //DTA Transaction
-        return badgeScan.scan(badgeId, locationId);
+    @GetMapping("/{id}/scan/{location_id}")
+    private ResponseEntity<TransactionDto> scanBadge(@PathVariable("id") Long badgeId, @PathVariable("location_id") Long locationId) {
+        Transaction transaction = badgeScan.scan(badgeId, locationId);
+        TransactionDto transactionDto = mapper.map(transaction, TransactionDto.class);
+        return ResponseEntity.ok(transactionDto);
     }
 
     @GetMapping()
@@ -40,30 +48,30 @@ public class BadgeController {
         return mapper.map(badgeService.findById(id), BadgeDto.class);
     }
 
-    @PostMapping
-    @PutMapping
-    public BadgeDto createOrUpdate(@RequestBody BadgeDto badge) {
-        return mapper.map(badgeService.createOrUpdate(mapper.map(badge, Badge.class)),
-                BadgeDto.class);
-    }
+//    @PostMapping
+//    @PutMapping
+//    public BadgeDto createOrUpdate(@RequestBody BadgeDto badge) {
+//        return mapper.map(badgeService.createOrUpdate(mapper.map(badge, Badge.class)),
+//                BadgeDto.class);
+//    }
 
-    @PostMapping("/{id}/replace")
-    public BadgeDto replaceWithNew(@RequestBody Badge badge) {
-        return mapper.map(badgeService.replaceWithNew(badge),BadgeDto.class);
-//        return badgeService.replaceWithNew(badge);
-    }
-
-    @PutMapping("/{id}/deactivate")
-    public BadgeDto deactivate(@RequestBody Badge badge) {
-        return mapper.map(badgeService.deactivateById(badge.getId()), BadgeDto.class);
-//        return service.deactivateById(badge.getId());
-    }
-
-    @PutMapping("/{id}/activate")
-    public BadgeDto activate(@RequestBody Badge badge) {
-        return mapper.map(badgeService.activateById(badge.getId()), BadgeDto.class);
-//        return service.activateById(badge.getId());
-    }
+//    @PostMapping("/{id}/replace")
+//    public BadgeDto replaceWithNew(@RequestBody Badge badge) {
+//        return mapper.map(badgeService.replaceWithNew(badge),BadgeDto.class);
+////        return badgeService.replaceWithNew(badge);
+//    }
+//
+//    @PostMapping("/{id}/deactivate")
+//    public BadgeDto deactivate(@PathVariable("id") Long id) {
+//        return mapper.map(badgeService.deactivateById(id), BadgeDto.class);
+////        return service.deactivateById(badge.getId());
+//    }
+//
+//    @PostMapping("/{id}/activate")
+//    public BadgeDto activate(@PathVariable("id") Long id) {
+//        return mapper.map(badgeService.activateById(id), BadgeDto.class);
+////        return service.activateById(badge.getId());
+//    }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Long id) {

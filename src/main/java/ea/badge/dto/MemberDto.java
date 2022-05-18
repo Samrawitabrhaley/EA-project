@@ -22,4 +22,7 @@ public class MemberDto {
     private String lastName;
     private String emailAddress;
 
+//    private Collection<RoleDto> role;
+//    private Collection<MembershipDto> membership;
+//    private Collection<BadgeDto> badge;
 }
