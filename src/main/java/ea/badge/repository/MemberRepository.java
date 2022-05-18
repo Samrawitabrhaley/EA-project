@@ -10,5 +10,7 @@ import java.util.Collection;
 
 @Repository
 public interface MemberRepository extends JpaRepository<Member,Long> {
+    @Query(" select m FROM User u join u.member m where u.username=:username and u.password=:password")
+    Member findByUserNamePwd(String username, String password);
 
 }

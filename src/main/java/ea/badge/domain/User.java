@@ -1,5 +1,6 @@
 package ea.badge.domain;
 
+import lombok.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @AllArgsConstructor
+@Getter@Setter
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

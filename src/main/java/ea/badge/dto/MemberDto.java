@@ -1,5 +1,6 @@
 package ea.badge.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import ea.badge.domain.Badge;
 import ea.badge.domain.Membership;
 import ea.badge.domain.Role;
