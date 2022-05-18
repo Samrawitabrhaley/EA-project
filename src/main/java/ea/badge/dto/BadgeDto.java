@@ -16,9 +16,9 @@ import java.time.LocalDate;
 @Data
 @Getter@Setter
 public class BadgeDto {
-
     private LocalDate activationDate;
     private LocalDate expirationDate;
     private Boolean active;
 
+    private MemberDto member;
 }

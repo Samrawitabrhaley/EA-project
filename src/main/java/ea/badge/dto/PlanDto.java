@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.List;
 
 @Component
@@ -20,7 +21,7 @@ public class PlanDto {
 
     private String planName;
     private String planDescription;
-    private List<Role> role;
-    private Rule rule;
+    private Collection<RoleDto> role;
+    private RuleDto rule;
 
 }

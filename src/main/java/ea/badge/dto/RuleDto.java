@@ -16,9 +16,9 @@ import javax.persistence.*;
 public class RuleDto {
     private int perDurationDays;
     private int allowedLimit;
-    public RuleDto mapToRuleDTO(Rule rule ){
-      this.setAllowedLimit(rule.getAllowedLimit());
-      this.setPerDurationDays(rule.getPerDurationDays());
-      return this;
-    }
+//    public RuleDto mapToRuleDTO(Rule rule ){
+//      this.setAllowedLimit(rule.getAllowedLimit());
+//      this.setPerDurationDays(rule.getPerDurationDays());
+//      return this;
+//    }
 }
