@@ -62,7 +62,7 @@ public class RuleController {
                 })
                 .orElseGet(() -> {
                     newRule.setId(id);
-                    return mapper.map(ruleService.update(newRule), RuleDto.class);
+                    return mapper.map(ruleService.save(newRule), RuleDto.class);
                 });
     }
 }
