@@ -32,6 +32,7 @@ public class Membership {
     private Member member;
 
     @ManyToMany(cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties("plan")
     @JoinTable(name = "Membership_Plan",
             joinColumns = { @JoinColumn(name = "Membership_id") },
             inverseJoinColumns = { @JoinColumn(name = "Plan_id") }
