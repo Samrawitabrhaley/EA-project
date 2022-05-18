@@ -56,13 +56,6 @@ public class RuleController {
 
     @PutMapping("/{id}")
     public RuleDto update(@RequestBody Rule  newRule, @PathVariable(name="id") Long id) {
-        return this.ruleService.findById(id)
-                .map(rule -> {
-                    return mapper.map(ruleService.save(newRule), RuleDto.class);
-                })
-                .orElseGet(() -> {
-                    newRule.setId(id);
-                    return mapper.map(ruleService.save(newRule), RuleDto.class);
-                });
+        return mapper.map(this.ruleService.update(newRule,id),RuleDto.class);
     }
 }
