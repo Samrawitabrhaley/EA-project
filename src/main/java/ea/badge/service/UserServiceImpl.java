@@ -2,6 +2,7 @@ package ea.badge.service;
 
 import ea.badge.domain.Member;
 import ea.badge.domain.User;
+import ea.badge.exception.ResourceNotFoundException;
 import ea.badge.repository.MemberRepository;
 import ea.badge.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,10 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Member login(String username, String password) {
-      return memberRepository.findByUserNamePwd(username,password);
+
+      Member found=  memberRepository.findByUserNamePwd(username,password);
+      System.out.println("member = "+ found);
+      if(found ==null) throw new ResourceNotFoundException();
+      return found;
     }
 }
