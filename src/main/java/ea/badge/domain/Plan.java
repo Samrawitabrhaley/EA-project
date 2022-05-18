@@ -1,6 +1,5 @@
 package ea.badge.domain;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,11 +25,11 @@ public class Plan {
     private String planDescription;
 
     @ManyToMany(cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties("role")
     @JoinTable(name = "Plan_Role",
             joinColumns = { @JoinColumn(name = "Plan_id") },
             inverseJoinColumns = { @JoinColumn(name = "Role_id") }
     )
-//    @JsonBackReference
     private List<Role> role;
 
     @OneToOne()
