@@ -1,7 +1,9 @@
 package ea.badge.service;
 
+import ea.badge.domain.Location;
 import ea.badge.domain.Membership;
 import ea.badge.domain.Plan;
+import ea.badge.domain.Transaction;
 import ea.badge.repository.PlanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,11 @@ public class PlanServiceImpl implements PlanService {
     @Override
     public Plan findById(Integer id) {
         return planRepository.findById(id).get();
+    }
+
+    @Override
+    public Collection<Location> getLocationsByPlanId(Long id) {
+        return planRepository.getLocationsByPlanId(id);
     }
 
 
