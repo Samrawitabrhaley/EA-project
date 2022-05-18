@@ -31,9 +31,8 @@ public class Member {
 //    @JsonBackReference
     private Collection<Role> role = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
-//    @JsonManagedReference
-//    @JsonIgnoreProperties("member")
+    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("member")
     private Collection<Membership> membership = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
