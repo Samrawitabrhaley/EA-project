@@ -13,7 +13,7 @@ import java.time.LocalDate;
 
 @Component
 @NoArgsConstructor
-@Data
+
 @Getter@Setter
 public class BadgeDto {
     private LocalDate activationDate;

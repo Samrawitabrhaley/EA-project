@@ -1,10 +1,10 @@
 package ea.badge.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 import javax.persistence.*;
@@ -14,7 +14,7 @@ import java.util.Collection;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter@Setter
+@Data
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +24,7 @@ public class Member {
     private String emailAddress;
 
     @ManyToMany(cascade = CascadeType.REMOVE)
+    @JsonIgnore
     @JoinTable(name = "Member_Role",
         joinColumns = { @JoinColumn(name = "Member_id") },
         inverseJoinColumns = { @JoinColumn(name = "Role_id") }
@@ -31,11 +32,13 @@ public class Member {
 //    @JsonBackReference
     private Collection<Role> role = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("member")
+    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+//    @JsonManagedReference
     private Collection<Membership> membership = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @JsonIgnore
 //    @JsonManagedReference
     private Collection<Badge> badge = new ArrayList<>();
 
