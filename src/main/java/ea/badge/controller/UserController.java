@@ -1,6 +1,4 @@
 package ea.badge.controller;
-
-
 import ea.badge.domain.User;
 import ea.badge.dto.UserDto;
 import ea.badge.service.UserService;
@@ -34,9 +32,9 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public UserDto getUserById(@PathVariable Integer id){
+    public User getUserById(@PathVariable("id") Integer id){
 
-        return mapper.map(userService.getUserById(id), UserDto.class);
+        return mapper.map(userService.getUserById(id), User.class);
     }
 
     @DeleteMapping("/{id}")

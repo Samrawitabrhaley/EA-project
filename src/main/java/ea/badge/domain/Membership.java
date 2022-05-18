@@ -1,6 +1,7 @@
 package ea.badge.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -25,9 +26,9 @@ public class Membership {
     @Enumerated(EnumType.STRING)
     private MembershipType membershipType;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_Id")
-//    @JsonBackReference
+    @JsonIgnoreProperties("membership")
     private Member member;
 
     @ManyToMany(cascade = CascadeType.REMOVE)
