@@ -1,6 +1,8 @@
 package ea.badge.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,12 +29,15 @@ public class Member {
         joinColumns = { @JoinColumn(name = "Member_id") },
         inverseJoinColumns = { @JoinColumn(name = "Role_id") }
     )
+//    @JsonBackReference
     private Collection<Role> role = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
+//    @JsonManagedReference
     private Collection<Membership> membership = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+//    @JsonManagedReference
     private Collection<Badge> badge = new ArrayList<>();
 
     public Member(Long id, String firstName, String lastName, String emailAddress) {

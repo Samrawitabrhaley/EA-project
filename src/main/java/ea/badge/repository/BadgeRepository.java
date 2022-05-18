@@ -13,14 +13,18 @@ import java.util.Collection;
 public interface BadgeRepository extends JpaRepository<Badge, Long> {
     @Query("FROM Badge b WHERE b.member.id = :id")
     Collection<Badge> findByMemberId(Long id);
+    @Query("FROM Badge b WHERE b.member.id = :id AND b.active=true")
+    Badge findActiveBadgeByMemberId(Long id);
+    @Query("FROM Badge b WHERE b.member.id = :id AND b.active=false")
+    Collection<Badge> findInactiveBadgeByMemberId(Long id);
 
     @Modifying
     @Query("UPDATE Badge b SET b.active = false WHERE b.id = :id")
-    Badge deactivateById(Long id);
+    int deactivateById(Long id);
     @Modifying
     @Query("UPDATE Badge b SET b.active = false WHERE b.member.id = :id")
-    Badge deactivateByMemberId(Long id);
+    int deactivateByMemberId(Long id);
     @Modifying
     @Query("UPDATE Badge b SET b.active = true WHERE b.id = :id")
-    Badge activateById(Long id);
+    int activateById(Long id);
 }

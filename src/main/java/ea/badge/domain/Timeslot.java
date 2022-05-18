@@ -1,5 +1,6 @@
 package ea.badge.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,6 +21,7 @@ public class Timeslot {
     private LocalTime endTime;
 
     @ManyToOne(cascade = CascadeType.ALL)
+//    @JsonBackReference
     private Location location;
 
     @Enumerated(EnumType.STRING)
