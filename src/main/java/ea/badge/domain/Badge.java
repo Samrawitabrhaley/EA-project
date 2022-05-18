@@ -2,6 +2,9 @@ package ea.badge.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -20,6 +23,7 @@ public class Badge {
     private Boolean active;
 
     @ManyToOne
+    @JsonIgnore
 //    @JsonBackReference
     private Member member;
 

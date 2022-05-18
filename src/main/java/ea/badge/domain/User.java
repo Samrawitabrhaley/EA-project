@@ -1,6 +1,10 @@
 package ea.badge.domain;
 
 import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -12,13 +16,12 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
     @Column(nullable = false)
     private String username;
     @Column(nullable = false)
     private String password;
-
-    @OneToOne(cascade =CascadeType.PERSIST)
+    @OneToOne
     @JoinColumn(name = "member_Id")
+    @JsonIgnore
     private Member member;
 }

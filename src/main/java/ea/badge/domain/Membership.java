@@ -1,8 +1,9 @@
 package ea.badge.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -26,13 +27,14 @@ public class Membership {
     @Enumerated(EnumType.STRING)
     private MembershipType membershipType;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "member_Id")
-    @JsonIgnoreProperties("membership")
+//    @JsonBackReference
     private Member member;
 
     @ManyToMany(cascade = CascadeType.REMOVE)
-    @JsonIgnoreProperties("plan")
+    @JsonIgnore
     @JoinTable(name = "Membership_Plan",
             joinColumns = { @JoinColumn(name = "Membership_id") },
             inverseJoinColumns = { @JoinColumn(name = "Plan_id") }
@@ -41,6 +43,7 @@ public class Membership {
     private Collection<Plan> plan = new ArrayList<>();
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "location_Id")
 //    @JsonBackReference
     private Location location;

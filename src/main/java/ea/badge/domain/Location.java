@@ -1,5 +1,6 @@
 package ea.badge.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -30,15 +31,18 @@ public class Location {
     private LocationType locationType;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
 //    @JoinColumn(name="location_id")
 //    @JsonManagedReference
     private List<Plan> plans = new ArrayList<>();
 
     @OneToMany(mappedBy = "location",cascade = CascadeType.ALL)
+    @JsonIgnore
 //    @JsonManagedReference
     private List<Membership> memberships = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
     @JoinColumn(name="location_Id")
 //    @JsonManagedReference
     private List<Timeslot> timeslots = new ArrayList<>();
