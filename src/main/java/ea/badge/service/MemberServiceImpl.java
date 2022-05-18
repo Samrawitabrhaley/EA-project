@@ -1,9 +1,6 @@
 package ea.badge.service;
 
-import ea.badge.domain.Badge;
-import ea.badge.domain.Member;
-import ea.badge.domain.Plan;
-import ea.badge.domain.Transaction;
+import ea.badge.domain.*;
 import ea.badge.repository.MemberRepository;
 import ea.badge.repository.PlanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +18,8 @@ public class MemberServiceImpl implements MemberService{
     @Autowired
     private TransactionService transactionService;
 
-//    @Autowired
-//    private PlanRepository planRepository;
+    @Autowired
+    private PlanRepository planRepository;
 
     @Override
     public Member createMember(Member member) {
@@ -89,8 +86,8 @@ public class MemberServiceImpl implements MemberService{
         return transactionService.getTransactionsByMemberId(id);
     }
 
-//    @Override
-//    public Collection<Plan> getPlansByMemberId(Long memberId) {
-//        return planRepository.getPlansByMemberId(memberId);
-//    }
+    @Override
+    public Collection<Membership> getPlansByMemberId(Long memberId) {
+        return planRepository.getPlansByMemberId(memberId);
+    }
 }
