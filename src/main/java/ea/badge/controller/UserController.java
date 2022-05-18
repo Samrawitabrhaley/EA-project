@@ -1,15 +1,12 @@
 package ea.badge.controller;
 
-import ea.badge.domain.Transaction;
+
 import ea.badge.domain.User;
-import ea.badge.dto.TransactionDto;
 import ea.badge.dto.UserDto;
 import ea.badge.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.persistence.Entity;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -29,7 +26,7 @@ public class UserController {
     }
 
     @PostMapping
-    public UserDto addUser(User user){
+    public UserDto addUser(@RequestBody UserDto user){
         return mapper.map(userService.addUser(mapper.map(user,
                 User.class)), UserDto.class);
 
