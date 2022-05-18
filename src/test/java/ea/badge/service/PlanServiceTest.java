@@ -60,9 +60,6 @@ class PlanServiceTest {
         Mockito.when(planRepository.findAll()).thenReturn(planList);
         Collection<Plan> actual = planService.findAll();
         assertThat(actual).isEqualTo(planList);
-
-
-
     }
 
     @Test

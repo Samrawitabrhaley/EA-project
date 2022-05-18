@@ -26,7 +26,6 @@ public class MemberServiceImpl implements MemberService{
         return memberRepository.findAll();
     }
 
-
     @Override
     public Member getMemberById(Long id) {
         return memberRepository.getById(id);
@@ -45,17 +44,31 @@ public class MemberServiceImpl implements MemberService{
         } else{
             throw new RuntimeException("Member Not Found");
         }
-
     }
 
     @Override
-    public Badge createOrUpdate(Badge badge) {
-        return badgeService.createOrUpdate(badge);
+    public Collection<Badge> getMemberBadges(Long memberId) {
+        return badgeService.findByMemberId(memberId);
     }
 
     @Override
-    public Badge replaceBadge(Badge badge) {
-        return badgeService.replaceWithNew(badge);
+    public Badge getMemberActiveBadge(Long memberId) {
+        return badgeService.findActiveBadgeByMemberId(memberId);
+    }
+
+    @Override
+    public Badge createOrUpdateBadge(Long memberId, Badge badge) {
+        return badgeService.createOrUpdate(getMemberById(memberId), badge);
+    }
+
+    @Override
+    public Badge replaceBadge(Long memberId, Long badgeId, Badge badge) {
+        return badgeService.replaceWithNew(getMemberById(memberId), badgeId, badge);
+    }
+
+    @Override
+    public Badge activateBadge(Long id) {
+        return badgeService.activateById(id);
     }
 
     @Override

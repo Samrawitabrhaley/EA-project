@@ -63,21 +63,21 @@ class BadgeServiceTest {
         assertThat(actual.get(0).getMember().getFirstName()).isEqualTo("mem1");
     }
 
-    @Test
-    void createOrUpdateTest() {
-        Badge badge = new Badge(1L, LocalDate.of(2022, 5, 5), LocalDate.of(2022, 6, 1), true, new Member(1L, "mem1", "mem1", "mem1@miu.edu"));
-        Mockito.when(badgeRepository.save(badge)).thenReturn(badge);
-        Badge actual = badgeService.createOrUpdate(badge);
-        assertThat(actual).isEqualTo(badge);
-    }
+//    @Test
+//    void createOrUpdateTest() {
+//        Badge badge = new Badge(1L, LocalDate.of(2022, 5, 5), LocalDate.of(2022, 6, 1), true, new Member(1L, "mem1", "mem1", "mem1@miu.edu"));
+//        Mockito.when(badgeRepository.save(badge)).thenReturn(badge);
+//        Badge actual = badgeService.createOrUpdate(badge);
+//        assertThat(actual).isEqualTo(badge);
+//    }
 
-    @Test
-    void replaceWithNewTest() {
-        Badge badge = new Badge(3L, LocalDate.of(2022, 5, 5), LocalDate.of(2022, 6, 1), true, new Member(1L, "mem1", "mem1", "mem1@miu.edu"));
-        Mockito.when(badgeService.replaceWithNew(badge));
-        Badge actual = badgeService.replaceWithNew(badge);
-        assertThat(actual).isEqualTo(badge);
-    }
+//    @Test
+//    void replaceWithNewTest() {
+//        Badge badge = new Badge(3L, LocalDate.of(2022, 5, 5), LocalDate.of(2022, 6, 1), true, new Member(1L, "mem1", "mem1", "mem1@miu.edu"));
+//        Mockito.when(badgeService.replaceWithNew(badge));
+//        Badge actual = badgeService.replaceWithNew(badge);
+//        assertThat(actual).isEqualTo(badge);
+//    }
 
     @Test
     void deactivateByIdTest() {
