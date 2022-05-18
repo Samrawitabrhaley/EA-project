@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("plans")
+@RequestMapping("/plans")
 public class PlanController {
     @Autowired
     private PlanService planService;
@@ -29,7 +29,7 @@ public class PlanController {
                 .map(plan -> mapper.map(plan, PlanDto.class)).collect(Collectors.toList());
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     @Transactional
     public PlanDto getById(@PathVariable Integer id) {
         return mapper.map(planService.findById(id), PlanDto.class);
