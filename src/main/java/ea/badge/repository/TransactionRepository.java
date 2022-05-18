@@ -13,5 +13,5 @@ public interface TransactionRepository extends JpaRepository<Transaction,Integer
     @Query("FROM Transaction t WHERE t.badge.member.id = :id")
     Collection<Transaction> getTransactionsByMemberId(Long id);
     @Query("FROM Transaction t WHERE t.badge.id = :badgeId and t.datetime > :startingFromThisDay")
-    int getNumberOfTransactionForNumberOfDaysByBadgeId(Long badgeId, LocalDateTime startingFromThisDay);
+    Collection<Transaction> getTransactionForNumberOfDaysByBadgeId(Long badgeId, LocalDateTime startingFromThisDay);
 }

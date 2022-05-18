@@ -26,7 +26,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public int getNumberOfTransactionForNumberOfDaysByBadgeId(Long badgeId, int numberOfDays) {
-        return transactionRepository.getNumberOfTransactionForNumberOfDaysByBadgeId(badgeId, LocalDateTime.now().minusDays(numberOfDays));
+        return transactionRepository.getTransactionForNumberOfDaysByBadgeId(badgeId, LocalDateTime.now().minusDays(numberOfDays)).size();
     }
 
     @Override

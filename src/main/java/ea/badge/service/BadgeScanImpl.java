@@ -30,6 +30,8 @@ public class BadgeScanImpl implements BadgeScan {
             if(numberOfTransaction > rule.getAllowedLimit()) {
                 transactionSucceed = false;
             }
+        } else {
+            transactionSucceed = false;
         }
 
         transaction = transactionService.addTransaction(new Transaction(badgeService.findById(badgeId),membership.getLocation(), transactionSucceed));
