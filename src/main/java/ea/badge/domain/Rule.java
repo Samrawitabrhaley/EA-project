@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter@Setter
 public class Rule {
     @Id
