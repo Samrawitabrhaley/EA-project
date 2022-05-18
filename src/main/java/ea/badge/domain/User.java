@@ -24,4 +24,10 @@ public class User {
     @JoinColumn(name = "member_Id")
     @JsonIgnore
     private Member member;
+
+    public User(Integer id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
 }
