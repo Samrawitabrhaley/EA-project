@@ -1,5 +1,6 @@
 package ea.badge.service;
 
+import ea.badge.domain.Member;
 import ea.badge.domain.User;
 
 import java.util.Collection;
@@ -9,4 +10,5 @@ public interface UserService {
     public User addUser(User user);
     public void deleteUser(Integer id);
     public User getUserById(Integer id);
+    public Member login(String username, String password);
 }
