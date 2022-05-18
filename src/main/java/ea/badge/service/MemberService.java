@@ -1,7 +1,7 @@
 package ea.badge.service;
 
-import ea.badge.domain.Badge;
-import ea.badge.domain.Member;
+import ea.badge.domain.*;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -19,4 +19,7 @@ public interface MemberService {
     Badge replaceBadge(Long memberId, Long badgeId, Badge badge);
     Badge activateBadge(Long id);
     Badge deactivateBadge(Long id);
+
+    Collection<Transaction> getTransactionsByMemberId(Long id);
+    Collection<Membership> getPlansByMemberId(Long memberId);
 }
