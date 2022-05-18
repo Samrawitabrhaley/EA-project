@@ -1,5 +1,6 @@
 package ea.badge.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,5 +21,6 @@ public class User {
     private String password;
     @OneToOne
     @JoinColumn(name = "member_Id")
+    @JsonIgnore
     private Member member;
 }

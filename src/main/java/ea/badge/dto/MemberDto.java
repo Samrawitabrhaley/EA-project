@@ -15,7 +15,6 @@ import java.util.Collection;
 
 @Component
 @NoArgsConstructor
-@Data
 @Getter@Setter
 public class MemberDto {
     private String firstName;

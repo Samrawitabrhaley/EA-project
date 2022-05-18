@@ -1,6 +1,7 @@
 package ea.badge.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,10 +17,12 @@ public class Transaction {
     private Long id;
 
     @ManyToOne
+    @JsonIgnore
 //    @JsonBackReference
     private Badge badge;
 
     @ManyToOne
+    @JsonIgnore
 //    @JsonBackReference
     private Location location;
 

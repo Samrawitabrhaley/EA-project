@@ -23,7 +23,7 @@ public class TransactionController {
     public TransactionDto addTransaction(@RequestBody TransactionDto transaction){
         return mapper.map(transactionService.addTransaction(mapper.map(transaction,
         Transaction.class)), TransactionDto.class);
-//        return transactionService.addTransaction(transaction);
+
     }
 
     @GetMapping
@@ -31,6 +31,5 @@ public class TransactionController {
         return this.transactionService.findAll().stream()
                 .map(transaction -> mapper.map(transaction, TransactionDto.class))
                 .collect(Collectors.toList());
-//        return transactionService.findAll();
     }
 }
