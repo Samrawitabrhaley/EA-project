@@ -30,7 +30,7 @@ public class PlanController {
         return mapper.map(planService.addPlan(mapper.map(plan, Plan.class)), PlanDto.class);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     @Transactional
     public PlanDto getById(@PathVariable Integer id) {
         return mapper.map(planService.findById(id), PlanDto.class);
