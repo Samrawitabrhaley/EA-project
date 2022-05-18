@@ -1,6 +1,7 @@
 package ea.badge.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,8 +10,10 @@ import javax.persistence.*;
 
 import java.time.LocalTime;
 
-@Data
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
 @NoArgsConstructor
 public class Timeslot {
     @Id
