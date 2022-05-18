@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Component
 @NoArgsConstructor
@@ -17,5 +17,5 @@ import java.util.Date;
 public class TransactionDto {
     private Badge badge;
     private Location location;
-    private Date datetime;
+    private LocalDateTime datetime;
 }

@@ -1,10 +1,12 @@
 package ea.badge.service;
 
+import ea.badge.domain.Membership;
 import ea.badge.domain.Plan;
 import ea.badge.repository.PlanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 @Service
 public class PlanServiceImpl implements PlanService {
@@ -22,6 +24,11 @@ public class PlanServiceImpl implements PlanService {
         return planRepository.findById(id).get();
     }
 
+
+    @Override
+    public Collection<Membership> getPlansByMemberId(Long memberId) {
+        return planRepository.getPlansByMemberId(memberId);
+    }
 
     @Override
     public Plan addPlan(Plan plan) {

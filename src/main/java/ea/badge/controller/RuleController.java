@@ -1,14 +1,19 @@
 package ea.badge.controller;
 
+import ea.badge.domain.Member;
 import ea.badge.domain.Rule;
+import ea.badge.dto.BadgeDto;
+import ea.badge.dto.MemberDto;
 import ea.badge.dto.RuleDto;
 import ea.badge.service.RuleService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -21,17 +26,17 @@ public class RuleController {
     private RuleService ruleService;
 
     @Autowired
-    private RuleDto ruleDtoObj;
+    private ModelMapper mapper;
 
     @GetMapping("")
-    public List<RuleDto> findAll(){
+    public Collection<RuleDto> findAll(){
         return this.ruleService.findAll().stream()
-                .map(rule -> ruleDtoObj.mapToRuleDTO(rule)).collect(Collectors.toList());
+                .map(rule -> mapper.map(rule, RuleDto.class)).collect(Collectors.toList());
     }
     @RolesAllowed("user")
     @GetMapping("/{id}")
     public RuleDto findById(@PathVariable(name="id") Long id){
-        return this.ruleDtoObj.mapToRuleDTO(this.ruleService.findById(id));
+        return mapper.map(ruleService.findById(id), RuleDto.class);
     }
     @RolesAllowed("admin")
     @DeleteMapping("/{id}")
@@ -46,12 +51,18 @@ public class RuleController {
 
     @PostMapping("")
     public RuleDto save (@RequestBody Rule rule){
-        Rule savedRule = ruleService.save(rule);
-        return ruleDtoObj.mapToRuleDTO(savedRule);
+        return mapper.map(ruleService.save(rule), RuleDto.class);
     }
 
     @PutMapping("/{id}")
     public RuleDto update(@RequestBody Rule  newRule, @PathVariable(name="id") Long id) {
-        return this.ruleDtoObj.mapToRuleDTO(this.ruleService.update(newRule,id));
+        return this.ruleService.findById(id)
+                .map(rule -> {
+                    return mapper.map(ruleService.save(newRule), RuleDto.class);
+                })
+                .orElseGet(() -> {
+                    newRule.setId(id);
+                    return mapper.map(ruleService.save(newRule), RuleDto.class);
+                });
     }
 }

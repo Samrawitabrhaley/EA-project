@@ -1,5 +1,6 @@
 package ea.badge.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,5 +21,13 @@ public class Badge {
     private Boolean active;
 
     @ManyToOne
+//    @JsonBackReference
     private Member member;
+
+    public Badge(LocalDate activationDate, LocalDate expirationDate, Boolean active, Member member) {
+        this.activationDate = activationDate;
+        this.expirationDate = expirationDate;
+        this.active = active;
+        this.member = member;
+    }
 }
