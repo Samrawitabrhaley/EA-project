@@ -77,6 +77,7 @@ class RuleServiceTest {
 
     @Test
     void deleteById() {
+        Mockito.when(ruleRepository.existsById(1L)).thenReturn(true);
         ruleService.deleteById(1L);
         verify(ruleRepository, times(1)).deleteById(1L);
     }
