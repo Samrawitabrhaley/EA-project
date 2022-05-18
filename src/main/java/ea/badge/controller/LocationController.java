@@ -34,7 +34,7 @@ public class LocationController {
     @GetMapping("{id}")
     @Transactional
     public LocationDto findById(@PathVariable Long id) {
-        return mapper.map(locationService.findById(id).get(), LocationDto.class);
+        return mapper.map(locationService.findById(id), LocationDto.class);
     }
 
     @DeleteMapping("/{id}")
@@ -50,20 +50,7 @@ public class LocationController {
 
     @PutMapping("/{id}")
     public LocationDto update(@RequestBody Location newLocation, @PathVariable Long id) {
-
-        return mapper.map(this.locationService.findById(id)
-                .map(location -> {
-                    location.setName(newLocation.getName());
-                    location.setLocationType(newLocation.getLocationType());
-                    location.setCapacity(newLocation.getCapacity());
-                    location.setDescription(newLocation.getDescription());
-                    location.setMemberships(newLocation.getMemberships());
-                    location.setPlans(newLocation.getPlans());
-                    location.setTimeslots(newLocation.getTimeslots());
-                    return locationService.save(location);
-                }).orElseGet(() -> {
-                    return locationService.save(newLocation);
-                }), LocationDto.class);
+        return mapper.map(locationService.update(newLocation,id),LocationDto.class);
     }
 
 

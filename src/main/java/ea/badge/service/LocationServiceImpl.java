@@ -1,6 +1,7 @@
 package ea.badge.service;
 
 import ea.badge.domain.Location;
+import ea.badge.exception.ResourceNotFoundException;
 import ea.badge.repository.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,9 +27,9 @@ public class LocationServiceImpl implements LocationService{
     }
 
     @Override
-    public Optional<Location> findById(Long id) {
+    public Location findById(Long id) {
 
-        return this.locationRepository.findById(id);
+        return this.locationRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
     }
     @Override
     public boolean existsById(Long id){
@@ -37,12 +38,25 @@ public class LocationServiceImpl implements LocationService{
 
     @Override
     public void deleteById(Long id) {
-        this.locationRepository.deleteById(id);
+        if( ! locationRepository.existsById(id))  {
+            throw new ResourceNotFoundException();
+        }
+        locationRepository.deleteById(id);
     }
 
     @Override
-    public Location update(Location location) {
-        return this.locationRepository.save(location);
+    public Location update(Location newLocation, Long id) {
+//        return this.locationRepository.save(location);
+        return this.locationRepository.findById(id) .map(location -> {
+            location.setName(newLocation.getName());
+            location.setLocationType(newLocation.getLocationType());
+            location.setCapacity(newLocation.getCapacity());
+            location.setDescription(newLocation.getDescription());
+            location.setMemberships(newLocation.getMemberships());
+            location.setPlans(newLocation.getPlans());
+            location.setTimeslots(newLocation.getTimeslots());
+            return locationRepository.save(location);
+        }).orElseThrow(ResourceNotFoundException::new);
     }
 
 }

@@ -38,6 +38,7 @@ public class RuleController {
     public RuleDto findById(@PathVariable(name="id") Long id){
         return mapper.map(ruleService.findById(id), RuleDto.class);
     }
+    @RolesAllowed("admin")
     @DeleteMapping("/{id}")
     public ResponseEntity<RuleDto> deleteById(@PathVariable(name="id") Long id){
         if(this.ruleService.existsById(id)) {
@@ -55,14 +56,13 @@ public class RuleController {
 
     @PutMapping("/{id}")
     public RuleDto update(@RequestBody Rule  newRule, @PathVariable(name="id") Long id) {
-        System.out.println("Editing data");
         return this.ruleService.findById(id)
                 .map(rule -> {
                     return mapper.map(ruleService.save(newRule), RuleDto.class);
                 })
                 .orElseGet(() -> {
                     newRule.setId(id);
-                    return mapper.map(ruleService.save(newRule), RuleDto.class);
+                    return mapper.map(ruleService.update(newRule), RuleDto.class);
                 });
     }
 }
