@@ -5,6 +5,7 @@ import ea.badge.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -21,6 +22,11 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public Collection<Transaction> getTransactionsByMemberId(Long id) {
         return transactionRepository.getTransactionsByMemberId(id);
+    }
+
+    @Override
+    public int getNumberOfTransactionForNumberOfDaysByBadgeId(Long badgeId, int numberOfDays) {
+        return transactionRepository.getNumberOfTransactionForNumberOfDaysByBadgeId(badgeId, LocalDateTime.now().minusDays(numberOfDays));
     }
 
     @Override
