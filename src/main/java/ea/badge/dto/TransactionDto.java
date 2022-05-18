@@ -12,10 +12,11 @@ import java.time.LocalDateTime;
 
 @Component
 @NoArgsConstructor
-@Data
+@AllArgsConstructor
 @Getter@Setter
 public class TransactionDto {
-    private Badge badge;
-    private Location location;
+    private BadgeDto badge;
+    private LocationDto location;
     private LocalDateTime datetime;
+    private Boolean succeed;
 }

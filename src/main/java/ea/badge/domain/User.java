@@ -1,5 +1,7 @@
 package ea.badge.domain;
 
+import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,8 +10,8 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-@Data
 @AllArgsConstructor
+@Getter@Setter
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,5 +22,6 @@ public class User {
     private String password;
     @OneToOne
     @JoinColumn(name = "member_Id")
+    @JsonIgnore
     private Member member;
 }

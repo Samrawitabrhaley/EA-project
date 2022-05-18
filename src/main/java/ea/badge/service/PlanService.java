@@ -1,7 +1,9 @@
 package ea.badge.service;
 
+import ea.badge.domain.Location;
 import ea.badge.domain.Membership;
 import ea.badge.domain.Plan;
+import ea.badge.domain.Transaction;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -19,6 +21,7 @@ public interface PlanService {
 
     public Plan findById(Integer id);
 
+    Collection<Location> getLocationsByPlanId(Long id);
 //    public Plan updatePlan(Plan plan);
 
 
