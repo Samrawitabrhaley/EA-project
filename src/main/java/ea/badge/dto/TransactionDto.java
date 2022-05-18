@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 
 @Component
 @NoArgsConstructor
-@Data
+@AllArgsConstructor
 @Getter@Setter
 public class TransactionDto {
     private BadgeDto badge;

@@ -37,9 +37,9 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public UserDto getUserById(@PathVariable Integer id){
+    public User getUserById(@PathVariable("id") Integer id){
 
-        return mapper.map(userService.getUserById(id), UserDto.class);
+        return mapper.map(userService.getUserById(id), User.class);
     }
 
     @DeleteMapping("/{id}")
