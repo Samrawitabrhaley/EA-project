@@ -2,7 +2,7 @@ package ea.badge.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;

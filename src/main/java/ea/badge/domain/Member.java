@@ -2,8 +2,7 @@ package ea.badge.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 import lombok.NoArgsConstructor;
 
 
@@ -14,7 +13,7 @@ import java.util.Collection;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter@Setter
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
