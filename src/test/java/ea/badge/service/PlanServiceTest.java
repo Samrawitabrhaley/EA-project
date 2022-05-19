@@ -31,15 +31,15 @@ class PlanServiceTest {
     @BeforeEach
     public void setup() {
 
-        Plan plan1=new Plan(1L,"fulltime","Unlimited", true);
-        Plan plan2=new Plan(2L,"fulltime","limited", true);
+        Plan plan1=new Plan(1L,"fulltime","Unlimited");
+        Plan plan2=new Plan(2L,"fulltime","limited");
         planList.add(plan1);
         planList.add(plan2);
     }
 
     @Test
     void addPlan() {
-        Plan plan3=new Plan(3L,"parttime","unlimited", true);
+        Plan plan3=new Plan(3L,"parttime","unlimited");
         Mockito.when(planRepository.save(plan3)).thenReturn(plan3);
         Plan actual=planService.addPlan(plan3);
         assertThat(actual).isEqualTo(plan3);

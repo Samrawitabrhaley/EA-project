@@ -37,13 +37,13 @@ public class Plan {
     @JoinColumn(name = "Rule_id")
     private Rule rule;
 
-    private boolean active = true;
+//    private boolean active = true;
 
 
-    public Plan(Long id, String planName, String planDescription, boolean active) {
+    public Plan(Long id, String planName, String planDescription) {
         this.id = id;
         this.planName = planName;
         this.planDescription =planDescription;
-        this.active = active;
+//        this.active = active;
     }
 }
