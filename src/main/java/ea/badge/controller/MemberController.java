@@ -49,7 +49,7 @@ public class MemberController {
     public void deleteMemberById(@PathVariable("memberId") Long id){
         memberService.deleteById(id);
     }
-    @PutMapping({"/memberId"})
+    @PutMapping("/{memberId}")
     public MemberDto updateMember(@Valid @RequestBody MemberDto memberDto, @PathVariable("memberId") Long id){
        return mapper.map(memberService.updateById(mapper.map(memberDto, Member.class), id), MemberDto.class);
     }

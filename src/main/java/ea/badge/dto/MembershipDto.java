@@ -19,7 +19,7 @@ public class MembershipDto {
     private LocalDate startDate;
     private LocalDate endDate;
     private MembershipType membershipType;
-//    private MemberDto member;
-//    private Collection<PlanDto> plan;
-//    private LocationDto location;
+    private MemberDto member;
+    private Collection<PlanDto> plan;
+
 }

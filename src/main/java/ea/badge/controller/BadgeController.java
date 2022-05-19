@@ -51,7 +51,7 @@ public class BadgeController {
 //    @PostMapping
 //    @PutMapping
 //    public BadgeDto createOrUpdate(@RequestBody BadgeDto badge) {
-//        return mapper.map(badgeService.createOrUpdate(mapper.map(badge, Badge.class)),
+//        return mapper.map(badgeService.createOrUpdate(mapper.map(badge, Badge.class), BadgeDto.class),
 //                BadgeDto.class);
 //    }
 

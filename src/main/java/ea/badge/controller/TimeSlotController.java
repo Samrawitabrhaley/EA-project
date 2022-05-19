@@ -20,7 +20,6 @@ public class TimeSlotController {
     @GetMapping(value = "/{id}")
     public TimeslotDto getTimeSlotById(@PathVariable int id) {
         return mapper.map(timeSlotService.getTimeSlotById(id).get(), TimeslotDto.class);
-//        return timeSlotService.getTimeSlotById(id);
     }
 
     @PostMapping
