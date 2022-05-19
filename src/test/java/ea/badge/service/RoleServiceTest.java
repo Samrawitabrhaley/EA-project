@@ -48,7 +48,7 @@ class RoleServiceTest {
 
     @Test
     void findById() {
-        Mockito.when(roleRepository.findById(1L)).thenReturn(java.util.Optional.ofNullable(rolelist.get(0)));
+        Mockito.when(roleRepository.getById(1L)).thenReturn(rolelist.get(0));
         Long id=1L;
         Role actual=roleService.getRoleById(id);
         assertThat(actual.getName()).isEqualTo("Student");

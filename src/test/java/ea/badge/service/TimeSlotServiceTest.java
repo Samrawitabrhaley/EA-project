@@ -44,8 +44,7 @@ class TimeSlotServiceTest {
         Long id = 2L;
         Timeslot slot2=new Timeslot(2L, LocalTime.of(1,45,30),LocalTime.of(2,45,30));
         Optional<Timeslot> slotOptional = Optional.of(slot2);
-        Mockito.when(timeSlotRepository.findById(id))
-                .thenReturn(slotOptional);
+        Mockito.when(timeSlotRepository.getById(id)).thenReturn(slotOptional.get());
         Timeslot actual = timeSlotService.getTimeSlotById(id);
         assertThat(actual.getId())
                 .isEqualTo(id);
