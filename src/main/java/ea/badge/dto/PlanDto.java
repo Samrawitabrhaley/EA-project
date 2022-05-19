@@ -18,6 +18,6 @@ public class PlanDto {
 
     private String planName;
     private String planDescription;
-    private boolean isActive;
+
 
 }

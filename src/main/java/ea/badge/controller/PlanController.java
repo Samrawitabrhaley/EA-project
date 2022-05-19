@@ -49,9 +49,9 @@ public class PlanController {
     }
 
     @PutMapping("/{id}")
-    public Plan update(@RequestBody Plan plan, @PathVariable Long id) {
-//        return mapper.map(planService.update(plan,id),PlanDto.class);
-        return planService.update(plan, id);
+    public PlanDto update(@RequestBody Plan plan, @PathVariable Long id) {
+        return mapper.map(planService.update(plan,id),PlanDto.class);
+
     }
 
     @DeleteMapping("/{id}")
