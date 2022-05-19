@@ -4,10 +4,12 @@ import ea.badge.domain.Timeslot;
 import ea.badge.repository.TimeSlotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 @Service
+@Transactional
 public class TimeSlotServiceImpl implements TimeSlotService{
 
     @Autowired
