@@ -1,12 +1,9 @@
 package ea.badge.controller;
-
-
 import ea.badge.domain.Transaction;
 import ea.badge.dto.TransactionDto;
 import ea.badge.service.TransactionService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +14,8 @@ import java.util.stream.Collectors;
 public class TransactionController {
     @Autowired
     private TransactionService transactionService;
-    private ModelMapper mapper = new ModelMapper();
+    @Autowired
+    private ModelMapper mapper;
 
     @PostMapping
     public TransactionDto addTransaction(@RequestBody TransactionDto transaction){
@@ -32,4 +30,19 @@ public class TransactionController {
                 .map(transaction -> mapper.map(transaction, TransactionDto.class))
                 .collect(Collectors.toList());
     }
+
+    @GetMapping("{id}")
+    public TransactionDto getById(@PathVariable Integer id){
+        return mapper.map(transactionService.getById(id), TransactionDto.class);
+    }
+
+    @PutMapping("/{id}")
+    public TransactionDto update(@RequestBody Transaction newTransactional, @PathVariable(name="id") Integer id) {
+        return mapper.map(this.transactionService.updateById(newTransactional,id),TransactionDto.class);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteById (@PathVariable Integer id){
+        transactionService.deleteTransaction(id);
+    }
+
 }

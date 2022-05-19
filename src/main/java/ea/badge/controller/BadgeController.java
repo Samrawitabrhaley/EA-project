@@ -28,7 +28,7 @@ public class BadgeController {
     private BadgeScan badgeScan;
 
     @Autowired
-    ModelMapper mapper;
+    private ModelMapper mapper;
 
     @GetMapping("/{id}/scan/{location_id}")
     @RolesAllowed("admin")
@@ -53,7 +53,7 @@ public class BadgeController {
 //    @PostMapping
 //    @PutMapping
 //    public BadgeDto createOrUpdate(@RequestBody BadgeDto badge) {
-//        return mapper.map(badgeService.createOrUpdate(mapper.map(badge, Badge.class)),
+//        return mapper.map(badgeService.createOrUpdate(mapper.map(badge, Badge.class), BadgeDto.class),
 //                BadgeDto.class);
 //    }
 

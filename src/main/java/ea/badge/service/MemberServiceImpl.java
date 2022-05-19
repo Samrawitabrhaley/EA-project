@@ -5,11 +5,13 @@ import ea.badge.repository.MemberRepository;
 import ea.badge.repository.PlanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class MemberServiceImpl implements MemberService{
     @Autowired
     private MemberRepository memberRepository;

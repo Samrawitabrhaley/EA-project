@@ -20,7 +20,8 @@ import java.util.stream.Collectors;
 public class UserController {
     @Autowired
     private UserService userService;
-    private ModelMapper mapper = new ModelMapper();
+    @Autowired
+    private ModelMapper mapper;
 
     @GetMapping
     public Collection<UserDto> getAllUsers(){
@@ -34,8 +35,6 @@ public class UserController {
     public UserDto addUser(@RequestBody UserDto user){
         return mapper.map(userService.addUser(mapper.map(user,
                 User.class)), UserDto.class);
-
-//        return userService.addUser(user);
     }
 
     @GetMapping("/{id}")
@@ -58,12 +57,4 @@ public class UserController {
         return mapper.map(userService.login(username,password),MemberDto.class);
 
     }
-
-
-
-
-
-
-
-
 }

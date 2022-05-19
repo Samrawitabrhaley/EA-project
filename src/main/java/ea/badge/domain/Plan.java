@@ -18,7 +18,7 @@ import java.util.List;
 public class Plan {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(name = "PlanName", nullable = false)
     private String planName;
@@ -26,13 +26,12 @@ public class Plan {
     @Column(name = "Description", nullable = true)
     private String planDescription;
 
-    @ManyToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "Plan_Role",
             joinColumns = { @JoinColumn(name = "Plan_id") },
             inverseJoinColumns = { @JoinColumn(name = "Role_id") }
     )
     @JsonIgnore
-//    @JsonBackReference
     private List<Role> role;
 
     @OneToOne()
@@ -40,7 +39,7 @@ public class Plan {
     @JoinColumn(name = "Rule_id")
     private Rule rule;
 
-    public Plan(Long id, String planName, String planDescription) {
+    public Plan(Integer id, String planName, String planDescription) {
         this.id = id;
         this.planName = planName;
         this.planDescription = planDescription;

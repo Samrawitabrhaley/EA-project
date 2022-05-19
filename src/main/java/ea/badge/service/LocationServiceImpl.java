@@ -5,11 +5,13 @@ import ea.badge.exception.ResourceNotFoundException;
 import ea.badge.repository.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class LocationServiceImpl implements LocationService{
 
     private Location loc;
@@ -46,7 +48,6 @@ public class LocationServiceImpl implements LocationService{
 
     @Override
     public Location update(Location newLocation, Long id) {
-//        return this.locationRepository.save(location);
         return this.locationRepository.findById(id) .map(location -> {
             location.setName(newLocation.getName());
             location.setLocationType(newLocation.getLocationType());
