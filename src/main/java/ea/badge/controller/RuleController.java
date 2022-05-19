@@ -40,13 +40,8 @@ public class RuleController {
     }
     @RolesAllowed("admin")
     @DeleteMapping("/{id}")
-    public ResponseEntity<RuleDto> deleteById(@PathVariable(name="id") Long id){
-        if(this.ruleService.existsById(id)) {
-            this.ruleService.deleteById(id);
-            return new ResponseEntity<>(HttpStatus.OK);
-        }else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public void deleteById(@PathVariable(name="id") Long id){
+        ruleService.deleteById(id);
     }
 
     @PostMapping("")
