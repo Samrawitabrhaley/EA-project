@@ -22,7 +22,8 @@ public class LocationController {
 
     @Autowired
     private LocationService locationService;
-    private ModelMapper mapper = new ModelMapper();
+    @Autowired
+    private ModelMapper mapper;
 
     @GetMapping()
     public List<LocationDto> findAll(){

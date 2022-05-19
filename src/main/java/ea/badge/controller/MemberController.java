@@ -2,19 +2,13 @@ package ea.badge.controller;
 
 import ea.badge.domain.Badge;
 import ea.badge.domain.Member;
-import ea.badge.domain.Membership;
 import ea.badge.dto.*;
-import ea.badge.service.BadgeService;
 import ea.badge.service.MemberService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.Collection;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
@@ -48,6 +42,7 @@ public class MemberController {
     public void deleteMemberById(@PathVariable("memberId") Long id){
         memberService.deleteById(id);
     }
+
     @PutMapping("/{memberId}")
     public MemberDto updateMember(@Valid @RequestBody MemberDto memberDto, @PathVariable("memberId") Long id){
        return mapper.map(memberService.updateById(mapper.map(memberDto, Member.class), id), MemberDto.class);
@@ -69,18 +64,15 @@ public class MemberController {
     @PostMapping("/{memberId}/badges/{badgeId}/replace")
     public BadgeDto replaceBadge(@PathVariable("memberId") Long memberId, @PathVariable("badgeId") Long badgeId, @RequestBody Badge badge){
         return mapper.map(memberService.replaceBadge(memberId, badgeId, badge),BadgeDto.class);
-//        return memberService.replaceBadge(bagde);
     }
     @PutMapping("/{memberId}/badges/{badgeId}/activate")
     public BadgeDto activateBadge(@PathVariable("badgeId") Long badgeId){
         return mapper.map(memberService.activateBadge(badgeId), BadgeDto.class);
-//        return memberService.deactivateBadge(badge.getId());
     }
 
     @PutMapping("/{memberId}/badges/{badgeId}/deactivate")
     public BadgeDto deactivateBadge(@PathVariable("badgeId") Long badgeId){
         return mapper.map(memberService.deactivateBadge(badgeId), BadgeDto.class);
-//        return memberService.deactivateBadge(badge.getId());
     }
 
     @GetMapping("/{memberId}/plans")

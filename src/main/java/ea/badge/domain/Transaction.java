@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @ManyToOne
     @JsonIgnore
@@ -33,7 +33,7 @@ public class Transaction {
 
     private Boolean succeed;
 
-    public Transaction(Long id, LocalDateTime datetime) {
+    public Transaction(Integer id, LocalDateTime datetime) {
         this.id = id;
         this.datetime = datetime;
     }

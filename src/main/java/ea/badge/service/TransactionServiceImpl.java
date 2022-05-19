@@ -1,6 +1,8 @@
 package ea.badge.service;
 
+import ea.badge.domain.Member;
 import ea.badge.domain.Transaction;
+import ea.badge.exception.ResourceNotFoundException;
 import ea.badge.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +20,13 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public Transaction addTransaction(Transaction transaction) {
+
         return transactionRepository.save(transaction);
+    }
+
+    @Override
+    public Transaction getById(Integer id) {
+        return transactionRepository.getById(id);
     }
 
     @Override
@@ -33,7 +41,24 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<Transaction> findAll() {
+
         return transactionRepository.findAll();
+    }
+
+    @Override
+    public Transaction updateById(Transaction newTransaction, Integer id) {
+        return this.transactionRepository.findById(id).map(transaction ->{
+            transaction.setBadge(newTransaction.getBadge());
+            transaction.setDatetime(newTransaction.getDatetime());
+            transaction.setLocation(newTransaction.getLocation());
+            transaction.setSucceed(newTransaction.getSucceed());
+            return transactionRepository.save(transaction);
+        }).orElseThrow(ResourceNotFoundException::new);
+    }
+
+    @Override
+    public void deleteTransaction(Integer id) {
+        transactionRepository.deleteById(id);
     }
 
 }

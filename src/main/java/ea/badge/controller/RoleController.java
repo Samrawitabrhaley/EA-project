@@ -16,7 +16,8 @@ import java.util.stream.Collectors;
 public class RoleController {
     @Autowired
     private RoleService roleService;
-    private ModelMapper mapper = new ModelMapper();
+    @Autowired
+    private ModelMapper mapper;
 
     @GetMapping()
     public Collection<RoleDto> getAll() { return this.roleService.findAll().stream()

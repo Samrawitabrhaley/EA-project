@@ -15,7 +15,8 @@ public class TimeSlotController {
 
     @Autowired
     private TimeSlotService timeSlotService;
-    private ModelMapper mapper = new ModelMapper();
+    @Autowired
+    private ModelMapper mapper;
 
     @GetMapping(value = "/{id}")
     public TimeslotDto getTimeSlotById(@PathVariable int id) {
@@ -26,6 +27,5 @@ public class TimeSlotController {
     public TimeslotDto addNewTimeSlot(@RequestBody TimeslotDto timeslot) {
         return mapper.map(timeSlotService.addNewTimeSlot(mapper
                 .map(timeslot, Timeslot.class)), TimeslotDto.class);
-//        return timeSlotService.addNewTimeSlot(timeslot);
     }
 }

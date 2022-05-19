@@ -24,15 +24,15 @@ public class BadgeScanImpl implements BadgeScan {
         Membership membership = membershipService.getMembershipByMemberIdAndByLocationId(badgeId, locationId);
         // TODO more logic, membership, plane
         //wip to do
-        if(Objects.nonNull(membership)) {
+        if (Objects.nonNull(membership)) {
             Rule rule = membership.getPlan().stream().findFirst().get().getRule();
             int numberOfTransaction = transactionService.getTransactionForNumberOfDaysByBadgeId(badgeId, rule.getPerDurationDays()).size();
-            if(numberOfTransaction > rule.getAllowedLimit()) {
+            if (numberOfTransaction > rule.getAllowedLimit()) {
                 transactionSucceed = false;
             }
         }
 
-        transaction = transactionService.addTransaction(new Transaction(badgeService.findById(badgeId),membership.getLocation(), transactionSucceed));
+        transaction = transactionService.addTransaction(new Transaction(badgeService.findById(badgeId), membership.getLocation(), transactionSucceed));
 
         return transaction;
     }

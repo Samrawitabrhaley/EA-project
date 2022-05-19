@@ -1,6 +1,7 @@
 package ea.badge.service;
 
 import ea.badge.domain.Timeslot;
+import ea.badge.exception.ResourceNotFoundException;
 import ea.badge.repository.TimeSlotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,4 +25,5 @@ public class TimeSlotServiceImpl implements TimeSlotService{
     public Optional<Timeslot> getTimeSlotById(int id) {
         return timeSlotRepository.findById(id);
     }
+
 }
