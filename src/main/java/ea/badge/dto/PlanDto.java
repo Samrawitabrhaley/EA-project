@@ -18,7 +18,7 @@ public class PlanDto {
 
     private String planName;
     private String planDescription;
-    private Collection<RoleDto> role;
+    private List<RoleDto> role;
     private RuleDto rule;
 
 }

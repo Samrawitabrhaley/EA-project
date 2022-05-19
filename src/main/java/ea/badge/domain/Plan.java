@@ -32,7 +32,6 @@ public class Plan {
             inverseJoinColumns = { @JoinColumn(name = "Role_id") }
     )
     @JsonIgnore
-//    @JsonBackReference
     private List<Role> role;
 
     @OneToOne()

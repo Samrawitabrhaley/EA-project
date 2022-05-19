@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @Getter@Setter
 public class TransactionDto {
     private BadgeDto badge;
+//    private LocationDto location;
     private LocationDto location;
     private LocalDateTime datetime;
     private Boolean succeed;
