@@ -14,8 +14,6 @@ import java.util.Optional;
 @Transactional
 public class LocationServiceImpl implements LocationService{
 
-    private Location loc;
-
     @Autowired
     private LocationRepository locationRepository;
     @Override
