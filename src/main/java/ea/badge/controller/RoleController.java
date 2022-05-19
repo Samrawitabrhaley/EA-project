@@ -24,12 +24,11 @@ public class RoleController {
             .map(role -> mapper.map(role, RoleDto.class)).collect(Collectors.toList());}
 
     @GetMapping("{id}")
-    @Transactional
     public RoleDto getById(@PathVariable("id") Integer id){
         return mapper.map(roleService.findById(id), RoleDto.class);
     }
     @PostMapping
-    public RoleDto addRole(@RequestBody RoleDto role){
+    public RoleDto addRole(@RequestBody Role role){
 
         return mapper.map(roleService.addRole(mapper.map(role, Role.class)), RoleDto.class);
     }

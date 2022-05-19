@@ -2,6 +2,7 @@ package ea.badge.controller;
 
 import ea.badge.domain.Plan;
 import ea.badge.dto.*;
+import ea.badge.repository.PlanRepository;
 import ea.badge.service.PlanService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +18,14 @@ public class PlanController {
     private PlanService planService;
 
     @Autowired
+    private PlanRepository planRepository;
+
+    @Autowired
     private ModelMapper mapper;
 
     @PostMapping
-    public PlanDto addPlan(@RequestBody PlanDto plan) {
-
-        return mapper.map(planService.addPlan(mapper.map(plan, Plan.class)), PlanDto.class);
+    public PlanDto addPlan(@RequestBody Plan plan) {
+        return mapper.map(planRepository.save(mapper.map(plan, Plan.class)), PlanDto.class);
     }
 
     @GetMapping
@@ -39,16 +42,15 @@ public class PlanController {
     }
 
     @GetMapping("/{id}")
-    @Transactional
     public PlanDto getById(@PathVariable Integer id) {
         return mapper.map(planService.findById(id), PlanDto.class);
     }
 
     @PutMapping(value = "/{id}")
-    @Transactional
     public PlanDto updatePlan(@PathVariable Plan plan){
         return mapper.map(planService.addPlan(plan), PlanDto.class);
     }
+
     @DeleteMapping("/{id}")
     public void removePlan(@PathVariable Integer id){
         planService.removePlan(id);

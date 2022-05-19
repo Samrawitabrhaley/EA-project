@@ -2,19 +2,17 @@ package ea.badge.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@Data
 @NoArgsConstructor
 @Entity
 @Getter@Setter
+@AllArgsConstructor
 public class Plan {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,16 +30,20 @@ public class Plan {
             inverseJoinColumns = { @JoinColumn(name = "Role_id") }
     )
     @JsonIgnore
-    private List<Role> role;
+    private List<Role> role = new ArrayList<>();
 
     @OneToOne()
     @JsonIgnore
     @JoinColumn(name = "Rule_id")
     private Rule rule;
 
-    public Plan(Integer id, String planName, String planDescription) {
+    private boolean active = true;
+
+
+    public Plan(Integer id, String planName, String planDescription, boolean active) {
         this.id = id;
         this.planName = planName;
-        this.planDescription = planDescription;
+        this.planDescription =planDescription;
+        this.active = active;
     }
 }

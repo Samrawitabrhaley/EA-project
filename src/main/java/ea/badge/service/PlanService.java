@@ -15,7 +15,7 @@ public interface PlanService {
 
     public Plan addPlan(Plan plan);
 
-    public void removePlan(Integer id);
+    public void removePlan( Integer id);
 
     public List<Plan> findAll();
 

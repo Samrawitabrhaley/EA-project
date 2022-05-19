@@ -18,7 +18,7 @@ public class TransactionController {
     private ModelMapper mapper;
 
     @PostMapping
-    public TransactionDto addTransaction(@RequestBody TransactionDto transaction){
+    public TransactionDto addTransaction(@RequestBody Transaction transaction){
         return mapper.map(transactionService.addTransaction(mapper.map(transaction,
         Transaction.class)), TransactionDto.class);
 

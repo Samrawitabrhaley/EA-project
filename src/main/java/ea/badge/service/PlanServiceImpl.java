@@ -4,6 +4,7 @@ import ea.badge.domain.Location;
 import ea.badge.domain.Membership;
 import ea.badge.domain.Plan;
 import ea.badge.domain.Transaction;
+import ea.badge.dto.PlanDto;
 import ea.badge.repository.PlanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 @Transactional
 public class PlanServiceImpl implements PlanService {
@@ -46,7 +49,10 @@ public class PlanServiceImpl implements PlanService {
     }
 
     @Override
-    public void removePlan(Integer id) {
-        planRepository.deleteById(id);
+    public void removePlan( Integer id) {
+        Plan inActivePlan = planRepository.findById(id).get();
+        inActivePlan.setActive(false);
+        planRepository.save(inActivePlan);
+
     }
 }

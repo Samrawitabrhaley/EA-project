@@ -1,8 +1,7 @@
 package ea.badge.service;
 
-import ea.badge.domain.Member;
+
 import ea.badge.domain.Plan;
-import ea.badge.repository.MemberRepository;
 import ea.badge.repository.PlanRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,7 +16,6 @@ import java.util.Collection;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -33,15 +31,15 @@ class PlanServiceTest {
     @BeforeEach
     public void setup() {
 
-        Plan plan1=new Plan(1L,"fulltime","Unlimited");
-        Plan plan2=new Plan(2L,"fulltime","limited");
+        Plan plan1=new Plan(1,"fulltime","Unlimited", true);
+        Plan plan2=new Plan(2,"fulltime","limited", true);
         planList.add(plan1);
         planList.add(plan2);
     }
 
     @Test
     void addPlan() {
-        Plan plan3=new Plan(3L,"parttime","unlimited");
+        Plan plan3=new Plan(3,"parttime","unlimited", true);
         Mockito.when(planRepository.save(plan3)).thenReturn(plan3);
         Plan actual=planService.addPlan(plan3);
         assertThat(actual).isEqualTo(plan3);
