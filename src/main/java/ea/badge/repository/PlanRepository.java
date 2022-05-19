@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Collection;
 
 @Repository
-public interface PlanRepository extends JpaRepository<Plan, Integer> {
+public interface PlanRepository extends JpaRepository<Plan, Long> {
     @Query("from Membership m inner join fetch m.plan where m.member.id = :memberId")
     Collection<Membership> getPlansByMemberId(Long memberId);
 

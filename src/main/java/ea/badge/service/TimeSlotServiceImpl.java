@@ -23,7 +23,7 @@ public class TimeSlotServiceImpl implements TimeSlotService {
     }
 
     @Override
-    public Timeslot getTimeSlotById(Integer id) {
+    public Timeslot getTimeSlotById(Long id) {
         return timeSlotRepository.getById(id);
     }
 
@@ -34,15 +34,15 @@ public class TimeSlotServiceImpl implements TimeSlotService {
 
     @Override
     public void deleteTimeSlotById(long id) {
-        if (!timeSlotRepository.existsById((int) id)) {
+        if (!timeSlotRepository.existsById(id)) {
             throw new ResourceNotFoundException();
         }
-        timeSlotRepository.deleteById((int) id);
+        timeSlotRepository.deleteById(id);
     }
 
     @Override
     public boolean existTimeSlotById(long id) {
-        return timeSlotRepository.existsById((int) id);
+        return timeSlotRepository.existsById(id);
     }
 
 }

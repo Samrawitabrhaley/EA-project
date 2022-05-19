@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface TimeSlotService {
     Timeslot addNewTimeSlot(Timeslot timeslot);
 
-    Timeslot getTimeSlotById(Integer id);
+    Timeslot getTimeSlotById(Long id);
 
     List<Timeslot> getAllTimeSlots();
 

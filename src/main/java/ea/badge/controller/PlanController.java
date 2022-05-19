@@ -40,7 +40,7 @@ public class PlanController {
 
     @GetMapping("/{id}")
     @Transactional
-    public PlanDto getById(@PathVariable Integer id) {
+    public PlanDto getById(@PathVariable Long id) {
         return mapper.map(planService.findById(id), PlanDto.class);
     }
 
@@ -50,7 +50,7 @@ public class PlanController {
         return mapper.map(planService.addPlan(plan), PlanDto.class);
     }
     @DeleteMapping("/{id}")
-    public void removePlan(@PathVariable Integer id){
+    public void removePlan(@PathVariable Long id){
         planService.removePlan(id);
     }
 }

@@ -36,8 +36,8 @@ class UserServiceTest {
     @BeforeEach
     public void setup() {
 
-        User user1=new User(1,"samri","samri123");
-        User user2=new User(2,"bisr","bisr123");
+        User user1=new User(1L,"samri","samri123");
+        User user2=new User(2L,"bisr","bisr123");
         userList.add(user1);
         userList.add(user2);
 
@@ -53,7 +53,7 @@ class UserServiceTest {
 
     @Test
     void addUser() {
-        User user3=new User(1,"ashok","ashok123");
+        User user3=new User(1L,"ashok","ashok123");
         Mockito.when(userRepository.save(user3)).thenReturn(user3);
         User actual=userService.addUser(user3);
         assertThat(actual).isEqualTo(user3);
@@ -61,14 +61,14 @@ class UserServiceTest {
 
     @Test
     void deleteUser() {
-        userService.deleteUser(1);
-        verify(userRepository, times(1)).deleteById(1);
+        userService.deleteUser(1L);
+        verify(userRepository, times(1)).deleteById(1L);
     }
 
     @Test
     void getUserById() {
-        Mockito.when(userRepository.getById(1)).thenReturn(userList.get(0));
-        Integer id=1;
+        Mockito.when(userRepository.getById(1L)).thenReturn(userList.get(0));
+        Long id=1L;
         User actual=userService.getUserById(id);
         assertThat(actual.getUsername()).isEqualTo("samri");
     }

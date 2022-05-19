@@ -11,12 +11,12 @@ import java.util.List;
 public interface TransactionService {
     Transaction addTransaction(Transaction transaction);
 
-    Transaction getById(Integer id);
+    Transaction getById(Long id);
     Collection<Transaction> getTransactionsByMemberId(Long id);
     Collection<Transaction> getTransactionForNumberOfDaysByBadgeId(Long badgeId, int numberOfDays);
     List<Transaction> findAll();
 
-    Transaction updateById(Transaction newTransaction, Integer id);
+    Transaction updateById(Transaction newTransaction, Long id);
 
-     void deleteTransaction(Integer id);
+     void deleteTransaction(Long id);
 }

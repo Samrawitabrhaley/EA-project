@@ -48,8 +48,8 @@ class RoleServiceTest {
 
     @Test
     void findById() {
-        Mockito.when(roleRepository.findById(1)).thenReturn(java.util.Optional.ofNullable(rolelist.get(0)));
-        Integer id=1;
+        Mockito.when(roleRepository.findById(1L)).thenReturn(java.util.Optional.ofNullable(rolelist.get(0)));
+        Long id=1L;
         Role actual=roleService.getRoleById(id);
         assertThat(actual.getName()).isEqualTo("Student");
     }
@@ -64,7 +64,7 @@ class RoleServiceTest {
 
     @Test
     void removeRole() {
-        roleService.deleteRoleById(1);
-        verify(roleRepository, times(1)).deleteById(1);
+        roleService.deleteRoleById(1L);
+        verify(roleRepository, times(1)).deleteById(1L);
     }
 }

@@ -32,16 +32,16 @@ public class TransactionController {
     }
 
     @GetMapping("{id}")
-    public TransactionDto getById(@PathVariable Integer id){
+    public TransactionDto getById(@PathVariable Long id){
         return mapper.map(transactionService.getById(id), TransactionDto.class);
     }
 
     @PutMapping("/{id}")
-    public TransactionDto update(@RequestBody Transaction newTransactional, @PathVariable(name="id") Integer id) {
+    public TransactionDto update(@RequestBody Transaction newTransactional, @PathVariable(name="id") Long id) {
         return mapper.map(this.transactionService.updateById(newTransactional,id),TransactionDto.class);
     }
     @DeleteMapping("/{id}")
-    public void deleteById (@PathVariable Integer id){
+    public void deleteById (@PathVariable Long id){
         transactionService.deleteTransaction(id);
     }
 

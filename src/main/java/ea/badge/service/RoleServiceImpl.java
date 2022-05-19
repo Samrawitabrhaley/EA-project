@@ -16,7 +16,7 @@ public class RoleServiceImpl implements RoleService{
 
     public Collection<Role> getAllRoles() { return roleRepository.findAll(); }
 
-    public Role getRoleById(Integer id) { return roleRepository.getById(id); }
+    public Role getRoleById(Long id) { return roleRepository.getById(id); }
 
     @Override
     public Role addNewRole(Role role) {
@@ -24,13 +24,13 @@ public class RoleServiceImpl implements RoleService{
     }
 
     @Override
-    public void deleteRoleById(Integer id) {
+    public void deleteRoleById(Long id) {
         roleRepository.deleteById(id);
 
     }
 
     @Override
     public boolean existRoleById(long id) {
-        return roleRepository.existsById((int) id);
+        return roleRepository.existsById(id);
     }
 }

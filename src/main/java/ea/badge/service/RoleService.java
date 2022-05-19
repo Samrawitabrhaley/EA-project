@@ -8,11 +8,11 @@ public interface RoleService {
 
     Collection<Role> getAllRoles();
 
-    Role getRoleById(Integer id);
+    Role getRoleById(Long id);
 
     Role addNewRole(Role role);
 
-    void deleteRoleById(Integer id);
+    void deleteRoleById(Long id);
 
     boolean existRoleById(long id);
 }

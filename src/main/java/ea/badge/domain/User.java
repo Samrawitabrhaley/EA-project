@@ -14,8 +14,8 @@ import javax.persistence.*;
 @Getter@Setter
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column(nullable = false)
     private String username;
     @Column(nullable = false)
@@ -25,7 +25,7 @@ public class User {
     @JsonIgnore
     private Member member;
 
-    public User(Integer id, String username, String password) {
+    public User(Long id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;

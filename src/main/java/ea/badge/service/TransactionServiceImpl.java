@@ -25,7 +25,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public Transaction getById(Integer id) {
+    public Transaction getById(Long id) {
         return transactionRepository.getById(id);
     }
 
@@ -46,7 +46,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public Transaction updateById(Transaction newTransaction, Integer id) {
+    public Transaction updateById(Transaction newTransaction, Long id) {
         return this.transactionRepository.findById(id).map(transaction ->{
             transaction.setBadge(newTransaction.getBadge());
             transaction.setDatetime(newTransaction.getDatetime());
@@ -57,7 +57,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public void deleteTransaction(Integer id) {
+    public void deleteTransaction(Long id) {
         transactionRepository.deleteById(id);
     }
 

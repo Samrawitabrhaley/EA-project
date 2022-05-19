@@ -30,8 +30,8 @@ public class BadgeController {
     @Autowired
     private ModelMapper mapper;
 
-    @GetMapping("/{id}/scan/{location_id}")
-    @RolesAllowed("admin")
+    @PostMapping("/{id}/scan/{location_id}")
+//    @RolesAllowed("admin")
     private ResponseEntity<TransactionDto> scanBadge(@PathVariable("id") Long badgeId, @PathVariable("location_id") Long locationId) {
         Transaction transaction = badgeScan.scan(badgeId, locationId);
         TransactionDto transactionDto = mapper.map(transaction, TransactionDto.class);

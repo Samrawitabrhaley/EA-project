@@ -28,7 +28,7 @@ public class RoleController {
 
     @GetMapping("{id}")
     @Transactional
-    public RoleDto getRoleById(@PathVariable("id") Integer id){
+    public RoleDto getRoleById(@PathVariable("id") Long id){
         return mapper.map(roleService.getRoleById(id), RoleDto.class);
     }
     @PostMapping
@@ -43,7 +43,7 @@ public class RoleController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Role> deleteRoleById(@PathVariable Integer id){
+    public ResponseEntity<Role> deleteRoleById(@PathVariable Long id){
         if(roleService.existRoleById(id)) {
             roleService.deleteRoleById(id);
             return new ResponseEntity<>(HttpStatus.OK);

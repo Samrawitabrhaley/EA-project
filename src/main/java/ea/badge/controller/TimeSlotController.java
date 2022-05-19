@@ -26,7 +26,7 @@ public class TimeSlotController {
     private ModelMapper mapper;
 
     @GetMapping("/{id}")
-    public TimeslotDto getTimeSlotById(@PathVariable(name = "id") Integer id) {
+    public TimeslotDto getTimeSlotById(@PathVariable(name = "id") Long id) {
         return mapper.map(timeSlotService.getTimeSlotById(id), TimeslotDto.class);
     }
 

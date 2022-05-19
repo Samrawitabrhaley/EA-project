@@ -33,7 +33,7 @@ class TimeSlotServiceTest {
 
     @Test
     void addNewTimeSlot() {
-        Timeslot slot1=new Timeslot(1, LocalTime.of(1,45,30),LocalTime.of(2,45,30));
+        Timeslot slot1=new Timeslot(1L, LocalTime.of(1,45,30),LocalTime.of(2,45,30));
         Mockito.when(timeSlotRepository.save(slot1)).thenReturn(slot1);
         Timeslot actual=timeSlotService.addNewTimeSlot(slot1);
         assertThat(actual).isEqualTo(slot1);
@@ -41,8 +41,8 @@ class TimeSlotServiceTest {
 
     @Test
     void getTimeSlotById() {
-        int id = 2;
-        Timeslot slot2=new Timeslot(2, LocalTime.of(1,45,30),LocalTime.of(2,45,30));
+        Long id = 2L;
+        Timeslot slot2=new Timeslot(2L, LocalTime.of(1,45,30),LocalTime.of(2,45,30));
         Optional<Timeslot> slotOptional = Optional.of(slot2);
         Mockito.when(timeSlotRepository.findById(id))
                 .thenReturn(slotOptional);

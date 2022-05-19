@@ -1,12 +1,12 @@
 server:
-  port: 8080
+  port: 8000
 spring:
   application:
     name: ea_badge
   datasource:
     url: jdbc:mysql://localhost:3306/ea_badge
     username: root
-    password: test1234
+    password: rootroot
     driverClassName: com.mysql.cj.jdbc.Driver
     hikari:
       maximumPoolSize: 10
