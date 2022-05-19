@@ -27,7 +27,7 @@ public class PlanServiceImpl implements PlanService {
     }
 
     @Override
-    public Plan findById(Integer id) {
+    public Plan findById(Long id) {
         return planRepository.findById(id).get();
     }
 
@@ -49,7 +49,7 @@ public class PlanServiceImpl implements PlanService {
     }
 
     @Override
-    public void removePlan( Integer id) {
+    public void removePlan( Long id) {
         Plan inActivePlan = planRepository.findById(id).get();
         inActivePlan.setActive(false);
         planRepository.save(inActivePlan);

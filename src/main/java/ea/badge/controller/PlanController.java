@@ -52,7 +52,7 @@ public class PlanController {
     }
 
     @DeleteMapping("/{id}")
-    public void removePlan(@PathVariable Integer id){
+    public void removePlan(@PathVariable Long id){
         planService.removePlan(id);
     }
 }

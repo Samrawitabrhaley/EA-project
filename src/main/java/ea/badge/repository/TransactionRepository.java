@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 
 @Repository
-public interface TransactionRepository extends JpaRepository<Transaction,Integer> {
+public interface TransactionRepository extends JpaRepository<Transaction,Long> {
     @Query("FROM Transaction t WHERE t.badge.member.id = :id")
     Collection<Transaction> getTransactionsByMemberId(Long id);
     @Query("FROM Transaction t WHERE t.badge.id = :badgeId and t.datetime > :startingFromThisDay")

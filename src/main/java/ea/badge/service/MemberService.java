@@ -1,10 +1,8 @@
 package ea.badge.service;
 
 import ea.badge.domain.*;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.Collection;
-import java.util.Optional;
 
 public interface MemberService {
     Member createMember(Member member);
@@ -14,7 +12,8 @@ public interface MemberService {
     Member updateById(Member member,Long id);
 
     Collection<Badge> getMemberBadges(Long memberId);
-    Badge getMemberActiveBadge(Long memberId);
+    Badge getMemberBadgeByBadgeId(Long badgeId);
+    Collection<Badge> getMemberActiveBadge(Long memberId);
     Badge createOrUpdateBadge(Long memberId, Badge badge);
     Badge replaceBadge(Long memberId, Long badgeId, Badge badge);
     Badge activateBadge(Long id);

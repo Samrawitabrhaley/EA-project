@@ -49,8 +49,8 @@ class PlanServiceTest {
 
     @Test
     void removePlan() {
-        planService.removePlan(1);
-        verify(planRepository, times(1)).deleteById(1);
+        planService.removePlan(1L);
+        verify(planRepository, times(1)).deleteById(1L);
     }
 
     @Test
@@ -62,8 +62,8 @@ class PlanServiceTest {
 
     @Test
     void getById() {
-        Mockito.when(planRepository.findById(1)).thenReturn(java.util.Optional.ofNullable(planList.get(0)));
-        Integer id=1;
+        Mockito.when(planRepository.findById(1L)).thenReturn(java.util.Optional.ofNullable(planList.get(0)));
+        Long id=1L;
         Plan actual=planService.findById(id);
         assertThat(actual.getPlanName()).isEqualTo("fulltime");
     }

@@ -15,11 +15,11 @@ public interface PlanService {
 
     public Plan addPlan(Plan plan);
 
-    public void removePlan( Integer id);
+    public void removePlan(Long id);
 
     public List<Plan> findAll();
 
-    public Plan findById(Integer id);
+    public Plan findById(Long id);
 
     Collection<Location> getLocationsByPlanId(Long id);
 //    public Plan updatePlan(Plan plan);

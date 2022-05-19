@@ -7,11 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 @Transactional
-public class TimeSlotServiceImpl implements TimeSlotService{
+public class TimeSlotServiceImpl implements TimeSlotService {
 
     @Autowired
     private TimeSlotRepository timeSlotRepository;
@@ -22,8 +23,26 @@ public class TimeSlotServiceImpl implements TimeSlotService{
     }
 
     @Override
-    public Optional<Timeslot> getTimeSlotById(int id) {
-        return timeSlotRepository.findById(id);
+    public Timeslot getTimeSlotById(Long id) {
+        return timeSlotRepository.getById(id);
+    }
+
+    @Override
+    public List<Timeslot> getAllTimeSlots() {
+        return timeSlotRepository.findAll();
+    }
+
+    @Override
+    public void deleteTimeSlotById(long id) {
+        if (!timeSlotRepository.existsById(id)) {
+            throw new ResourceNotFoundException();
+        }
+        timeSlotRepository.deleteById(id);
+    }
+
+    @Override
+    public boolean existTimeSlotById(long id) {
+        return timeSlotRepository.existsById(id);
     }
 
 }

@@ -5,9 +5,12 @@ import ea.badge.dto.RoleDto;
 import ea.badge.service.RoleService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -20,20 +23,31 @@ public class RoleController {
     private ModelMapper mapper;
 
     @GetMapping()
-    public Collection<RoleDto> getAll() { return this.roleService.findAll().stream()
+    public Collection<RoleDto> getAllRoles() { return this.roleService.getAllRoles().stream()
             .map(role -> mapper.map(role, RoleDto.class)).collect(Collectors.toList());}
 
     @GetMapping("{id}")
-    public RoleDto getById(@PathVariable("id") Integer id){
-        return mapper.map(roleService.findById(id), RoleDto.class);
+    public RoleDto getById(@PathVariable("id") Long id){
+        return mapper.map(roleService.getRoleById(id), RoleDto.class);
     }
     @PostMapping
-    public RoleDto addRole(@RequestBody Role role){
 
-        return mapper.map(roleService.addRole(mapper.map(role, Role.class)), RoleDto.class);
+    public RoleDto addNewRole(@RequestBody RoleDto role){
+
+        return mapper.map(roleService.addNewRole(mapper.map(role, Role.class)), RoleDto.class);
     }
-    @DeleteMapping("/{id}")
-    public void removeRole(@PathVariable Integer id){
-        roleService.removeRole(id);
+
+    @PutMapping
+    public RoleDto updateRole(@Valid @RequestBody Role role){
+        return mapper.map(roleService.addNewRole(role),RoleDto.class);
     }
+        @DeleteMapping("/{id}")
+        public ResponseEntity<Role> deleteRoleById(@PathVariable Long id){
+        if(roleService.existRoleById(id)) {
+            roleService.deleteRoleById(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        }
 }
