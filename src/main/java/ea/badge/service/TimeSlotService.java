@@ -8,4 +8,6 @@ public interface TimeSlotService {
     Timeslot addNewTimeSlot(Timeslot timeslot);
 
     Optional<Timeslot> getTimeSlotById(int id);
+
+    
 }
