@@ -1,5 +1,6 @@
 package ea.badge.controller;
 
+import ea.badge.domain.Location;
 import ea.badge.domain.Plan;
 import ea.badge.dto.*;
 import ea.badge.repository.PlanRepository;
@@ -8,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -42,17 +44,19 @@ public class PlanController {
     }
 
     @GetMapping("/{id}")
-    public PlanDto getById(@PathVariable Integer id) {
+    public PlanDto getById(@PathVariable Long id) {
         return mapper.map(planService.findById(id), PlanDto.class);
     }
 
-    @PutMapping(value = "/{id}")
-    public PlanDto updatePlan(@PathVariable Plan plan){
-        return mapper.map(planService.addPlan(plan), PlanDto.class);
+    @PutMapping("/{id}")
+    public Plan update(@RequestBody Plan plan, @PathVariable Long id) {
+//        return mapper.map(planService.update(plan,id),PlanDto.class);
+        return planService.update(plan, id);
     }
 
     @DeleteMapping("/{id}")
     public void removePlan(@PathVariable Long id){
+
         planService.removePlan(id);
     }
 }

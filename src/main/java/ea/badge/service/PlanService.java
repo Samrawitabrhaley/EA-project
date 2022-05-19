@@ -15,6 +15,8 @@ public interface PlanService {
 
     public Plan addPlan(Plan plan);
 
+    public Plan update(Plan plan, Long id);
+
     public void removePlan(Long id);
 
     public List<Plan> findAll();
