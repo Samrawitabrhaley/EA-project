@@ -20,12 +20,19 @@ public class BadgeScanImpl implements BadgeScan {
     @Override
     public Transaction scan(Long badgeId, Long locationId) {
         Transaction transaction = null;
+        Boolean transactionSucceed = true;
         Membership membership = membershipService.getMembershipByMemberIdAndByLocationId(badgeId, locationId);
+        // TODO more logic, membership, plane
+        //wip to do
         if(Objects.nonNull(membership)) {
-            transaction = transactionService.addTransaction(new Transaction(badgeService.findById(badgeId),membership.getLocation(), true));
-        } else {
-            transaction = transactionService.addTransaction(new Transaction(badgeService.findById(badgeId),membership.getLocation(), false));
+            Rule rule = membership.getPlan().stream().findFirst().get().getRule();
+            int numberOfTransaction = transactionService.getTransactionForNumberOfDaysByBadgeId(badgeId, rule.getPerDurationDays()).size();
+            if(numberOfTransaction > rule.getAllowedLimit()) {
+                transactionSucceed = false;
+            }
         }
+
+        transaction = transactionService.addTransaction(new Transaction(badgeService.findById(badgeId),membership.getLocation(), transactionSucceed));
 
         return transaction;
     }

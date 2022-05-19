@@ -19,6 +19,9 @@ import java.util.Collection;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +46,8 @@ class BadgeServiceTest {
 
     @Test
     void findAllTest() {
+
+
         Mockito.when(badgeRepository.findAll()).thenReturn(badgesList);
         Collection<Badge> actual = badgeService.findAll();
         assertThat(actual).isEqualTo(badgesList);
@@ -57,8 +62,11 @@ class BadgeServiceTest {
 
     @Test
     void findByMemberIdTest() {
+        Collection<Badge> mem1Badges=new ArrayList<>();
+        Badge badge1 = new Badge(1L, LocalDate.of(2022, 5, 5), LocalDate.of(2022, 6, 1), true, new Member(1L, "mem1", "mem1", "mem1@miu.edu"));
+        mem1Badges.add(badge1);
         //TODO fix this method in BadgeController and retest
-        Mockito.when(badgeRepository.getById(1L)).thenReturn(badgesList.get(0));
+        Mockito.when(badgeRepository.findByMemberId(1L)).thenReturn(mem1Badges);
         List<Badge> actual = (List<Badge>) badgeService.findByMemberId(1L);
         assertThat(actual.get(0).getMember().getFirstName()).isEqualTo("mem1");
     }
@@ -82,7 +90,7 @@ class BadgeServiceTest {
     @Test
     void deactivateByIdTest() {
         Badge badge = new Badge(1L, LocalDate.of(2022, 5, 5), LocalDate.of(2022, 6, 1), false, new Member(1L, "mem1", "mem1", "mem1@miu.edu"));
-        Mockito.when(badgeRepository.deactivateById(1L));
+        Mockito.when(badgeRepository.getById(1L)).thenReturn(badge);
         Badge actual = badgeService.deactivateById(1L);
         assertThat(actual).isEqualTo(badge);
     }
@@ -90,16 +98,19 @@ class BadgeServiceTest {
     @Test
     void activateByIdTest() {
         Badge badge = new Badge(1L, LocalDate.of(2022, 5, 5), LocalDate.of(2022, 6, 1), true, new Member(1L, "mem1", "mem1", "mem1@miu.edu"));
-        Mockito.when(badgeRepository.deactivateById(1L));
-        Badge actual = badgeService.deactivateById(1L);
+        Mockito.when(badgeRepository.getById(1L)).thenReturn(badge);
+        Badge actual = badgeService.activateById(1L);
         assertThat(actual).isEqualTo(badge);
     }
 
     @Test
     void deleteByIdTest() {
-        Badge badge = new Badge(1L, LocalDate.of(2022, 5, 5), LocalDate.of(2022, 6, 1), true, new Member(1L, "mem1", "mem1", "mem1@miu.edu"));
         badgeService.deleteById(1L);
-        Badge actual = null;
-        assertThat(actual).isEqualTo(badge);
+        verify(badgeRepository, times(1)).deleteById(1L);
+
+//        Badge badge = new Badge(1L, LocalDate.of(2022, 5, 5), LocalDate.of(2022, 6, 1), true, new Member(1L, "mem1", "mem1", "mem1@miu.edu"));
+//        badgeService.deleteById(1L);
+//        Badge actual = null;
+//        assertThat(actual).isEqualTo(badge);
     }
 }

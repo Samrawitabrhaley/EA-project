@@ -1,6 +1,8 @@
 package ea.badge.controller;
 
 import ea.badge.domain.Plan;
+import ea.badge.dto.BadgeDto;
+import ea.badge.dto.LocationDto;
 import ea.badge.dto.MembershipDto;
 import ea.badge.dto.PlanDto;
 import ea.badge.service.PlanService;
@@ -12,17 +14,27 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/members/{memberId}/plans")
+@RequestMapping("/plans")
+//@RequestMapping("/members/{memberId}/plans")
 public class PlanController {
     @Autowired
     private PlanService planService;
-    private ModelMapper mapper = new ModelMapper();
 
-    @GetMapping
-    public Collection<MembershipDto> getPlans(@PathVariable("memberId") Long memberId) {
-        return this.planService.getPlansByMemberId(memberId).stream()
-                .map(membership -> mapper.map(membership, MembershipDto.class)).collect(Collectors.toList());
+    @Autowired
+    private ModelMapper mapper;
+
+    @GetMapping("/{planId}/locations")
+    public Collection<LocationDto> getPlanLocations(@PathVariable("planId") Long id){
+        return planService.getLocationsByPlanId(id).stream()
+                .map(location -> mapper.map(location, LocationDto.class))
+                .collect(Collectors.toList());
     }
+
+//    @GetMapping
+//    public Collection<MembershipDto> getPlans(@PathVariable("memberId") Long memberId) {
+//        return this.planService.getPlansByMemberId(memberId).stream()
+//                .map(membership -> mapper.map(membership, MembershipDto.class)).collect(Collectors.toList());
+//    }
 
     @PostMapping
     public PlanDto addPlan(@RequestBody PlanDto plan) {

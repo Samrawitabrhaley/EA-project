@@ -2,10 +2,7 @@ package ea.badge.dto;
 
 
 import ea.badge.domain.Member;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -13,7 +10,7 @@ import java.time.LocalDate;
 
 @Component
 @NoArgsConstructor
-
+@AllArgsConstructor
 @Getter@Setter
 public class BadgeDto {
     private LocalDate activationDate;

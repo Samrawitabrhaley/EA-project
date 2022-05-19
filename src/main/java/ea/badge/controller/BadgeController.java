@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -30,6 +31,7 @@ public class BadgeController {
     ModelMapper mapper;
 
     @GetMapping("/{id}/scan/{location_id}")
+    @RolesAllowed("admin")
     private ResponseEntity<TransactionDto> scanBadge(@PathVariable("id") Long badgeId, @PathVariable("location_id") Long locationId) {
         Transaction transaction = badgeScan.scan(badgeId, locationId);
         TransactionDto transactionDto = mapper.map(transaction, TransactionDto.class);

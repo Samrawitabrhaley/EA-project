@@ -4,6 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import ea.badge.domain.Badge;
+import ea.badge.domain.Membership;
+import ea.badge.domain.Role;
+import lombok.*;
 import org.springframework.stereotype.Component;
 import java.util.Collection;
 
