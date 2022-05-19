@@ -27,11 +27,11 @@ public class RoleController {
             .map(role -> mapper.map(role, RoleDto.class)).collect(Collectors.toList());}
 
     @GetMapping("{id}")
-    @Transactional
-    public RoleDto getRoleById(@PathVariable("id") Long id){
+    public RoleDto getById(@PathVariable("id") Long id){
         return mapper.map(roleService.getRoleById(id), RoleDto.class);
     }
     @PostMapping
+
     public RoleDto addNewRole(@RequestBody RoleDto role){
 
         return mapper.map(roleService.addNewRole(mapper.map(role, Role.class)), RoleDto.class);
@@ -41,14 +41,13 @@ public class RoleController {
     public RoleDto updateRole(@Valid @RequestBody Role role){
         return mapper.map(roleService.addNewRole(role),RoleDto.class);
     }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Role> deleteRoleById(@PathVariable Long id){
+        @DeleteMapping("/{id}")
+        public ResponseEntity<Role> deleteRoleById(@PathVariable Long id){
         if(roleService.existRoleById(id)) {
             roleService.deleteRoleById(id);
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-    }
+        }
 }

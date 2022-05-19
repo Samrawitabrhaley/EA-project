@@ -44,7 +44,7 @@ public class LocationController {
     }
 
     @PostMapping("")
-    public LocationDto save(@RequestBody LocationDto location){
+    public LocationDto save(@RequestBody Location location){
 
         return mapper.map(locationService.save(mapper.map(location, Location.class)), LocationDto.class);
     }

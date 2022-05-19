@@ -18,7 +18,6 @@ public class PlanDto {
 
     private String planName;
     private String planDescription;
-    private List<RoleDto> role;
-    private RuleDto rule;
+    private boolean isActive;
 
 }

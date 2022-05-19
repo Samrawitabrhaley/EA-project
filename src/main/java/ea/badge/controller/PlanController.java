@@ -1,12 +1,15 @@
 package ea.badge.controller;
 
+import ea.badge.domain.Location;
 import ea.badge.domain.Plan;
 import ea.badge.dto.*;
+import ea.badge.repository.PlanRepository;
 import ea.badge.service.PlanService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -17,12 +20,14 @@ public class PlanController {
     private PlanService planService;
 
     @Autowired
+    private PlanRepository planRepository;
+
+    @Autowired
     private ModelMapper mapper;
 
     @PostMapping
-    public PlanDto addPlan(@RequestBody PlanDto plan) {
-
-        return mapper.map(planService.addPlan(mapper.map(plan, Plan.class)), PlanDto.class);
+    public PlanDto addPlan(@RequestBody Plan plan) {
+        return mapper.map(planRepository.save(mapper.map(plan, Plan.class)), PlanDto.class);
     }
 
     @GetMapping
@@ -39,18 +44,19 @@ public class PlanController {
     }
 
     @GetMapping("/{id}")
-    @Transactional
     public PlanDto getById(@PathVariable Long id) {
         return mapper.map(planService.findById(id), PlanDto.class);
     }
 
-    @PutMapping(value = "/{id}")
-    @Transactional
-    public PlanDto updatePlan(@PathVariable Plan plan){
-        return mapper.map(planService.addPlan(plan), PlanDto.class);
+    @PutMapping("/{id}")
+    public Plan update(@RequestBody Plan plan, @PathVariable Long id) {
+//        return mapper.map(planService.update(plan,id),PlanDto.class);
+        return planService.update(plan, id);
     }
+
     @DeleteMapping("/{id}")
     public void removePlan(@PathVariable Long id){
+
         planService.removePlan(id);
     }
 }
