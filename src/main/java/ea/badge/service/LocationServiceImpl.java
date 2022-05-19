@@ -46,7 +46,6 @@ public class LocationServiceImpl implements LocationService{
 
     @Override
     public Location update(Location newLocation, Long id) {
-//        return this.locationRepository.save(location);
         return this.locationRepository.findById(id) .map(location -> {
             location.setName(newLocation.getName());
             location.setLocationType(newLocation.getLocationType());

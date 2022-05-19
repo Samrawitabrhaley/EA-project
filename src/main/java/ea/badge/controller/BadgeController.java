@@ -28,7 +28,7 @@ public class BadgeController {
     private BadgeScan badgeScan;
 
     @Autowired
-    ModelMapper mapper;
+    private ModelMapper mapper;
 
     @GetMapping("/{id}/scan/{location_id}")
     @RolesAllowed("admin")
