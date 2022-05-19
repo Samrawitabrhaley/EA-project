@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -59,7 +58,12 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public Badge getMemberActiveBadge(Long memberId) {
+    public Badge getMemberBadgeByBadgeId(Long badgeId) {
+        return badgeService.findById(badgeId);
+    }
+
+    @Override
+    public Collection<Badge> getMemberActiveBadge(Long memberId) {
         return badgeService.findActiveBadgeByMemberId(memberId);
     }
 

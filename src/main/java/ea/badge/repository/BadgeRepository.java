@@ -14,7 +14,7 @@ public interface BadgeRepository extends JpaRepository<Badge, Long> {
     @Query("FROM Badge b WHERE b.member.id = :id")
     Collection<Badge> findByMemberId(Long id);
     @Query("FROM Badge b WHERE b.member.id = :id AND b.active=true")
-    Badge findActiveBadgeByMemberId(Long id);
+    Collection<Badge> findActiveBadgeByMemberId(Long id);
     @Query("FROM Badge b WHERE b.member.id = :id AND b.active=false")
     Collection<Badge> findInactiveBadgeByMemberId(Long id);
 

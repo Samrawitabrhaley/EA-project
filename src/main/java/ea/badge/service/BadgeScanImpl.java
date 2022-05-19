@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @Service
 @Transactional
-public class BadgeScanImpl implements BadgeScan {
+public class BadgeScanImpl implements BadgeScanService {
     @Autowired
     private MembershipService membershipService;
     @Autowired
@@ -22,8 +22,7 @@ public class BadgeScanImpl implements BadgeScan {
         Transaction transaction = null;
         Boolean transactionSucceed = true;
         Membership membership = membershipService.getMembershipByMemberIdAndByLocationId(badgeId, locationId);
-        // TODO more logic, membership, plane
-        //wip to do
+
         if (Objects.nonNull(membership)) {
             Rule rule = membership.getPlan().stream().findFirst().get().getRule();
             int numberOfTransaction = transactionService.getTransactionForNumberOfDaysByBadgeId(badgeId, rule.getPerDurationDays()).size();

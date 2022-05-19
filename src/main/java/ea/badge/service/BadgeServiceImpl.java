@@ -35,14 +35,14 @@ public class BadgeServiceImpl implements BadgeService {
             badgeToSave.setActive(badge.getActive());
             badgeToSave.setMember(member);
         } else {
-            badgeToSave = new Badge(badge.getActivationDate(), badge.getExpirationDate(), badge.getActive(), member);
+            badgeToSave = new Badge(badge.getActivationDate(), badge.getExpirationDate(), false, member);
         }
         return repository.save(badgeToSave);
     }
 
     @Override
     public Badge replaceWithNew(Member member, Long oldBadge, Badge newBadge) {
-        Badge replacementBadge = new Badge(newBadge.getActivationDate(), newBadge.getExpirationDate(), newBadge.getActive(), member);
+        Badge replacementBadge = new Badge(newBadge.getActivationDate(), newBadge.getExpirationDate(), true, member);
         repository.deactivateById(oldBadge);
 //        repository.deactivateByMemberId(member.getId());
         return repository.save(replacementBadge);
@@ -66,7 +66,7 @@ public class BadgeServiceImpl implements BadgeService {
     }
 
     @Override
-    public Badge findActiveBadgeByMemberId(Long id) {
+    public Collection<Badge> findActiveBadgeByMemberId(Long id) {
         return repository.findActiveBadgeByMemberId(id);
     }
 

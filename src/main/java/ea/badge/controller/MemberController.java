@@ -48,8 +48,9 @@ public class MemberController {
        return mapper.map(memberService.updateById(mapper.map(memberDto, Member.class), id), MemberDto.class);
     }
 
-    @PostMapping("/{memberId}/badges")
-    @PutMapping("/{memberId}/badges")
+//    @PostMapping("/{memberId}/badges")
+//    @PutMapping("/{memberId}/badges")
+    @RequestMapping(value = "/{memberId}/badges", method = { RequestMethod.POST, RequestMethod.PUT })
     public BadgeDto createOrUpdateBadge(@PathVariable("memberId") Long memberId, @RequestBody Badge badge) {
         return mapper.map(memberService.createOrUpdateBadge(memberId, badge),
                 BadgeDto.class);
@@ -57,6 +58,16 @@ public class MemberController {
     @GetMapping("/{memberId}/badges")
     public Collection<BadgeDto> getMemberBadges(@PathVariable("memberId") Long id){
         return memberService.getMemberBadges(id).stream()
+                .map(badge -> mapper.map(badge, BadgeDto.class))
+                .collect(Collectors.toList());
+    }
+    @GetMapping("/{memberId}/badges/{badgeId}")
+    public BadgeDto getMemberBadgeByBadgeId(@PathVariable("badgeId") Long id){
+        return mapper.map(memberService.getMemberBadgeByBadgeId(id), BadgeDto.class);
+    }
+    @GetMapping("/{memberId}/badges/active")
+    public Collection<BadgeDto> getMemberActiveBadge(@PathVariable("memberId") Long id){
+        return memberService.getMemberActiveBadge(id).stream()
                 .map(badge -> mapper.map(badge, BadgeDto.class))
                 .collect(Collectors.toList());
     }

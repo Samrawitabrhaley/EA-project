@@ -15,6 +15,6 @@ public interface BadgeService {
     Badge activateById(Long id);
     void deleteById(Long id);
 
-    Badge findActiveBadgeByMemberId(Long id);
+    Collection<Badge> findActiveBadgeByMemberId(Long id);
     Collection<Badge> findInactiveBadgeByMemberId(Long id);
 }
