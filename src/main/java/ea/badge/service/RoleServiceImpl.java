@@ -14,18 +14,23 @@ public class RoleServiceImpl implements RoleService{
     @Autowired
     private RoleRepository roleRepository;
 
-    public Collection<Role> findAll() { return roleRepository.findAll(); }
+    public Collection<Role> getAllRoles() { return roleRepository.findAll(); }
 
-    public Role findById(Integer id) { return roleRepository.findById(id).get(); }
+    public Role getRoleById(Integer id) { return roleRepository.getById(id); }
 
     @Override
-    public Role addRole(Role role) {
+    public Role addNewRole(Role role) {
        return roleRepository.save(role);
     }
 
     @Override
-    public void removeRole(Integer id) {
+    public void deleteRoleById(Integer id) {
         roleRepository.deleteById(id);
 
+    }
+
+    @Override
+    public boolean existRoleById(long id) {
+        return roleRepository.existsById((int) id);
     }
 }

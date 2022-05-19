@@ -1,6 +1,8 @@
 package ea.badge.controller;
 
+import ea.badge.domain.Member;
 import ea.badge.domain.Timeslot;
+import ea.badge.dto.MemberDto;
 import ea.badge.dto.TimeslotDto;
 import ea.badge.service.TimeSlotService;
 import org.modelmapper.ModelMapper;
@@ -9,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -38,7 +41,10 @@ public class TimeSlotController {
         return timeSlotService.getAllTimeSlots().stream()
                 .map(timeslot -> mapper.map(timeslot, TimeslotDto.class)).collect(Collectors.toList());
     }
-
+    @PutMapping
+    public TimeslotDto updateTimeslot(@Valid @RequestBody Timeslot timeslot){
+        return mapper.map(timeSlotService.addNewTimeSlot(timeslot),TimeslotDto.class);
+    }
     @DeleteMapping("/{id}")
     public ResponseEntity<TimeslotDto> deleteTimeSlotById(@PathVariable long id) {
         if(timeSlotService.existTimeSlotById(id)) {

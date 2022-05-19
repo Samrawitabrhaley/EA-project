@@ -1,8 +1,6 @@
 package ea.badge.service;
 
-import ea.badge.domain.Member;
 import ea.badge.domain.Role;
-import ea.badge.repository.MemberRepository;
 import ea.badge.repository.RoleRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,7 +15,6 @@ import java.util.Collection;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -44,7 +41,7 @@ class RoleServiceTest {
     @Test
     void findAll() {
         Mockito.when(roleRepository.findAll()).thenReturn(rolelist);
-        Collection<Role> actual = roleService.findAll();
+        Collection<Role> actual = roleService.getAllRoles();
         assertThat(actual).isEqualTo(rolelist);
 
     }
@@ -53,7 +50,7 @@ class RoleServiceTest {
     void findById() {
         Mockito.when(roleRepository.findById(1)).thenReturn(java.util.Optional.ofNullable(rolelist.get(0)));
         Integer id=1;
-        Role actual=roleService.findById(id);
+        Role actual=roleService.getRoleById(id);
         assertThat(actual.getName()).isEqualTo("Student");
     }
 
@@ -61,13 +58,13 @@ class RoleServiceTest {
     void addRole() {
         Role role3=new Role(1L,"Stuff");
         Mockito.when(roleRepository.save(role3)).thenReturn(role3);
-        Role actual=roleService.addRole(role3);
+        Role actual=roleService.addNewRole(role3);
         assertThat(actual).isEqualTo(role3);
     }
 
     @Test
     void removeRole() {
-        roleService.removeRole(1);
+        roleService.deleteRoleById(1);
         verify(roleRepository, times(1)).deleteById(1);
     }
 }
